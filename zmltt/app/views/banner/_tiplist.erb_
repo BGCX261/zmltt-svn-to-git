@@ -1,0 +1,7 @@
+Типы поверхностей: <% if logged_in? %>Все: <%= link_to 'да', {:controller => 'banner', :action => 'showall', :id => 'tip', :do =>'all'}%> /
+  <%= link_to 'нет', {:controller => 'banner', :action => 'showall', :id => 'tip', :do =>'notall'}%> |<%end%>
+<% tip.map do |elem| %>
+  <% if not elem == '3x6(призмавижн)' %>
+    <%= elem %>: <span id="tip_div_<%=elem%>"><%= showtip(elem) %></span> |
+  <%end%>
+<%end%>

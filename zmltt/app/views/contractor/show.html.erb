@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <td>
+      Название:
+    </td>
+    <td>
+      <%= @contractor.name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      Отрасль:
+    </td>
+    <td>
+      <%= @contractor.otrasl %>
+    </td>
+  </tr>
+</table>
+<%= render :partial => "client/show_ph", :locals => { :client => @contractor, :cntrl => 'contractor' }  %>

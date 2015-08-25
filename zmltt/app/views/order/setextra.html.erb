@@ -1,0 +1,20 @@
+<table border="1">
+  <tr>
+    <td>Дополнительная услуга</td>
+    <td>Цена</td>
+  </tr>
+  <% @extra.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.coast %></td>
+      <% if params[:bannerid] %>
+        <td><%= link_to "Выбрать2", {:controller => 'order', :action => "add2rec", :id => p.id, :bannerid => params[:bannerid] }%></td>
+      <%else%>
+        <td><%= link_to "Выбрать", {:action => "add2rec", :id => p.id }%></td>
+      <%end%>
+    </tr>
+  <%end%>
+</table>
+<% if logged_in? %>
+  <%= link_to_remote "Управление дополнительными услугами", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller=> 'order', :action => "listextra"}%>
+<%end%>

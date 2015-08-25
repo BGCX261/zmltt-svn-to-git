@@ -1,0 +1,40 @@
+<% form_for :contractor, :html => {:method => "post", :id=>"contractor-form"} do |p| %>
+  <table>
+    <tr>
+      <td>
+        Название:
+      </td>
+      <td>
+        <%= p.text_field :name, :id=>'name' %>
+      </td>
+    </tr> <!--
+      <tr>
+        <td>
+          Ф.И.О.:
+        </td>
+        <td>
+  <%= p.text_field :fio, :id=>'fio' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Телефон:
+        </td>
+        <td>
+  <%= p.text_field :tel, :id=>'tel' %>
+        </td>
+      </tr> -->
+    <tr>
+      <td>
+      Отрасль:    </td>
+      <td>
+        <%= p.select :otrasl, ['Наружная реклама','Радио', 'ТВ', 'Промо', 'Сувенирка']%>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<%  ['name'].each do |nm| %>
+  <%=  upatrh(nm) %>
+<%end%>
+
+<%= easysave("contractor-form",{:action => :edit}) %>

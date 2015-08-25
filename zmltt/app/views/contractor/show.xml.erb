@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contr>
+  <id><%= @contractor.id %></id>
+  <name><%= @contractor.name %></name>
+  <otrasl><%= @contractor.otrasl %></otrasl>
+  <contacts>
+    <%- @contractor.contacts.each do |p| -%>
+      <contact>
+        <id><%= p.id %></id>
+        <contractor_id><%= @contractor.id %></contractor_id>
+        <name><%= p.name %></name>
+        <post><%= p.post %></post>
+        <visible><%=  p.visible %></visible>
+        <numbers>
+          <%- p.phones.each do |t| -%>
+            <number type="<%= t.tip %>" id="<%= t.id %>" visible="<%= t.visible %>"><%= t.number %></number>
+          <%-end-%>
+        </numbers>
+      </contact>
+    <%-end-%>
+  </contacts>
+</contr>

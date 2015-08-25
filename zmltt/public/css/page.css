@@ -1,0 +1,208 @@
+/*
+ * Глобальные стили
+*/
+BODY{margin:25px; padding:0; background-color:#fff;}
+*{font:11px/13px Tahoma; color:#525f66}
+TD A{font:11px/13px Tahoma; color:#0ca6f2;}
+A:link, A:visited{text-decoration:none;}
+A:hover{text-decoration:underline; color:#ee2d00;}
+IMG{border:none;}
+
+FORM{margin:0; padding:0}
+LABEL{display:block; margin-bottom:4px; font:11px/11px Tahoma; color:#525f66}
+INPUT, TEXTAREA{display:block; font:11px/11px Tahoma; color:#525f66}
+
+
+/*
+ * Скелет
+*/
+.main{width:100%; height:100%;}
+.header TD{height:60px; vertical-align:top; white-space:nowrap;}
+  .header .right .blue{margin-right:16px}
+.body{vertical-align: top;}
+.bodyTable{width:100%;}
+    .bodyTable TD.leftSpace{width:5%}
+    .bodyTable TD.rightSpace{width:5%}      
+    .bodyTable TD.leftSide{vertical-align:top; text-align:center; width:20%; padding-right:50px; min-width:200px;}
+    .bodyTable TD.rightSide{vertical-align:top; width:70%}
+.footer TD{white-space:nowrap;}
+.footer TD.left{width:33%}
+.footer TD.center{width:34%;}
+  .footer TD.center A:link, .footer TD.center A:visited{width:75px; height:20px; background:url('../images/forluck.png') no-repeat top left; display:inline-block}
+  .footer TD.center A:hover{width:75px; height:20px; background:url('../images/forluck_a.png') no-repeat top left; display:inline-block}
+.footer TD.right{width:33%; min-width:300px;}
+.footer TD{height:100px; vertical-align:bottom;}
+
+
+/*
+ * Левая колонка
+*/      
+.leftSide .content{width:150px; text-align:left;}
+  .leftSide .logo{margin:15px 0 105px 0}
+  .leftSide .menu{margin-bottom:40px}
+  .manager{margin-bottom:40px;}
+    .manager H3{margin-left:30px; font-size:12px; color:#a1acb2; margin-bottom:35px}
+    .manager DIV{text-align:left}
+    .manager SPAN{color:#0ca6f2}
+    .manager .name{margin-top:10px; font:14px/32px Tahoma}
+    .manager .phone{margin-top:15px; font:11px/32px Tahoma}
+  
+  .order{width:175px; position:relative; margin-left:-25px}  
+    .order H2{margin:0 0 20px 0; font:18px/18px Tahoma; color:#09b317}
+    .order A{clear:left; display:block; margin-top:20px}  
+    .order .middle DIV{margin-top:10px; clear:all;}
+    .order .middle SPAN{position:relative; right:0px; margin-top:-12px; float:right; color:#09b217}
+  
+
+
+/*
+ * Поиск
+*/
+.searchBlock{text-align:center; margin:0 0 40px 0; min-width:600px}
+  .searchBlock .topLinks{height:25px;}
+    .searchBlock .topLinks .green{float:left; margin-left:10px;}
+    .searchBlock .topLinks .right{float:right; margin-right:10px}
+      .searchBlock .topLinks .right #selectPlaceLink{padding-right:12px; position:relative; z-index:0; background:url('../images/arrow_down_blue.png') no-repeat 100% 2px}      
+    .searchBlock .roundTextfield{margin-bottom:22px;}
+    .searchBlock .middleLinks{height:25px; border-bottom:solid #dae1e6 1px; margin-bottom:13px;}
+      .searchBlock .middleLinks TABLE{width:100%;}
+      .searchBlock .middleLinks TD.margin{width:2.8%;}
+      .searchBlock .middleLinks TD.first{padding-left:10px;}
+      .searchBlock .middleLinks TD.last{text-align:right; padding-right:10px;}
+      .searchBlock .middleLinks TD{white-space:nowrap;} 
+    .searchBlock .bottomLinks{}
+      .searchBlock .bottomLinks TABLE{width:100%;}
+      .searchBlock .bottomLinks TD.margin{width:8.33%;}
+        .apage .searchBlock .bottomLinks TD.margin{width:7.14% !important;}
+      .searchBlock .bottomLinks TD.first{padding-left:10px;}
+      .searchBlock .bottomLinks TD.last{padding-right:10px;}
+      .searchBlock .bottomLinks TD{white-space:nowrap;} 
+   
+   
+/*
+ * Таблица результатов
+*/
+TABLE.resultsTable{width:100%}
+  TABLE.resultsTable SPAN.unchecked{margin-left:2px; width:14px; height:14px; display:block; cursor:pointer; background:url('../images/checkbox.png') no-repeat top left}
+  TABLE.resultsTable SPAN.checked{margin-left:2px; width:14px; height:14px; display:block; cursor:pointer; background:url('../images/checkbox_a.png') no-repeat top left}
+  TABLE.resultsTable A{color:#09b217; background:url('../images/checkbox_a.png') no-repeat -1000px -1000px;}
+  TABLE.resultsTable TD.spacerHead{height:10px}
+  TABLE.resultsTable TD.spacerFoot{height:25px}      
+  TABLE.resultsTable .even TD{height:30px; background-color:#f2f6f7}
+  TABLE.resultsTable .odd TD{height:50px}
+    TABLE.resultsTable THEAD TH{height:25px; border-bottom:solid #dae1e6 1px; font-size:12px; vertical-align:top}
+      TABLE.resultsTable THEAD TH.rtSelect{width:4%}
+      TABLE.resultsTable THEAD TH.rtAdress{width:30%}
+      TABLE.resultsTable THEAD TH.rtType{width:20%}
+      TABLE.resultsTable THEAD TH.rtSide{width:11%}
+      TABLE.resultsTable THEAD TH.rtLight{width:11%}
+      TABLE.resultsTable THEAD TH.rtPrice{width:15%}
+      TABLE.resultsTable THEAD TH.rtPeriod{width:10%}  
+  TABLE.resultsTable TBODY TD{padding:0 5px 0 5px; white-space:nowrap;}
+  TABLE.resultsTable TBODY TD A{color:#525f66}
+  TABLE.resultsTable TBODY TR.green A{color:#09b217 !important}
+  TABLE.resultsTable TFOOT TD{height:30px; vertical-align: bottom; border-top:solid #dae1e6 1px;}
+  TABLE.resultsTable .pager A.prev{width:19px; height:8px; margin-right:8px; background:url('../images/arrow_left.png') no-repeat top left; display:inline-block}
+  TABLE.resultsTable .pager A.next{width:19px; height:8px; background:url('../images/arrow_right.png') no-repeat top left; display:inline-block}
+  TABLE.resultsTable .pager A:hover.prev{background:url('../images/arrow_left_a.png') no-repeat top left}
+  TABLE.resultsTable .pager A:hover.next{background:url('../images/arrow_right_a.png') no-repeat top left}
+  TABLE.resultsTable .right A{margin-left:10px; color:#0ca6f2}   
+.placeHelp{width:200px; position:absolute; display:none; margin-left:20px}
+  .placeHelp .middle H4{margin:0; font-size:11px; color:#525f66}  
+  .placeHelp .middle DIV{width:120px; margin-top:10px; clear:all;}
+  .placeHelp .middle SPAN{position:relative; right:0px; margin:-12px 30px 0 0; float:right}
+
+  
+
+  
+/*
+ * Вспомогательные стили
+*/  
+.rub{color:#09b217;  background:url('../images/rub.png') no-repeat 100% 50%; padding-right:10px;}  
+.hand{cursor:pointer}
+.hr{height:0; clear:left}
+.grey *{color:#a1acb2}
+.green *{color:#09b217}
+.blue *, .blue{color:#0ca6f2} 
+.bold{font-weight:bold}
+.boldred{font-weight:bold; color:#ef2d00}
+  
+UL.links{list-style:none; margin:0; padding:0}
+  UL.links LI{display:inline; margin-right:13px}
+  
+UL.links2{list-style:none; margin:0; padding:0}
+  UL.links2 LI{display:inline; margin-left:13px}  
+  
+UL.menu{list-style:none; margin:0; padding:0}
+  UL.menu LI{margin-bottom:7px}
+  
+TD.center{text-align:center}
+TD.right{text-align:right}
+
+.roundered{background:#fff url('../images/border.png') repeat-y top left}
+  .roundered .middle{padding:12px 18px 12px 18px; text-align:left; background:url('../images/border.png') repeat-y top right}
+  .roundered .top{height:6px; overflow:hidden; background:url('../images/border.png') repeat-x top left}
+  .roundered .bottom{height:6px; overflow:hidden; background:url('../images/border.png') repeat-x bottom left}
+  * html .roundered .bottom{overflow:visible}
+    .roundered .top .left{float:left; margin:-6px 0 0 -6px}
+    .roundered .top .right{float:right; margin:-6px -6px 0 0}
+    .roundered .bottom .left{float:left; margin:0 0 -6px -6px}
+    .roundered .bottom .right{float:right; margin:0 -6px -6px 0}
+    
+.roundered2{background-color:#f2f6f7}
+  .roundered2 .middle{padding:6px 24px 6px 24px; text-align:left;}
+  .roundered2 .top{height:12px; overflow:hidden;}
+  .roundered2 .bottom{height:12px; overflow:hidden;}
+  * html .roundered2 .bottom{overflow:visible}
+    .roundered2 .top .left{float:left; margin:-12px 0 0 -12px}
+    .roundered2 .top .right{float:right; margin:-12px -12px 0 0}
+    .roundered2 .bottom .left{float:left; margin:0 0 -12px -12px}
+    .roundered2 .bottom .right{float:right; margin:0 -12px -12px 0}   
+
+.roundered3{width:193px}
+  .roundered3 .middle{padding:6px 18px 9px 18px; text-align:left; background:url('../images/border2.png') repeat-y top right}
+  .roundered3 .top{height:9px; overflow:hidden; background:url('../images/border4.png') repeat-x top left}
+  .roundered3 .bottom{height:20px; overflow:hidden; background:url('../images/border3.png') repeat-x bottom left}
+  * html .roundered3 .bottom{overflow:visible}       
+    
+.loader {height:16px; width:16px; margin:2px -2px 0 0; #margin:0 -5px 0 0; float:right}    
+
+
+
+/*
+ * Формы
+*/
+INPUT.textfield{margin-bottom:15px; padding:5px; display:block; border:solid #ced4d9 1px}
+TEXTAREA.textarea{margin-bottom:15px; padding:5px; display:block; border:solid #ced4d9 1px}
+
+.button{background:url('../images/button_bg.png') no-repeat top left;}
+  .button DIV{padding:5px 10px 4px 10px; background:url('../images/button_bg2.png') no-repeat top right; font:11px/11px Tahoma; color:#525f66; text-align:center; cursor:pointer}
+
+.roundTextfield{height:32px; overflow:hidden; background:url('../images/textfield_bg.png') repeat-x; text-align:right}
+  .roundTextfield .left{height:32px; overflow:hidden; background:url('../images/textfield_left.png') no-repeat top left}
+  .roundTextfield .right{height:32px; padding-top:6px; padding-right:10px; overflow:hidden; background:url('../images/textfield_right.png') no-repeat top right}
+  * html .roundTextfield .right{padding-top:8px;}  
+  .roundTextfield INPUT{width:100%; padding:0 10px 0 30px; margin:0 0 0 -20px; float:left; font:16px/16px Arial; font-weight:bold; color:#667780; border:none; background-color:transparent;}
+  
+.popupForm{width:275px}
+  .popupForm .close{float:right; margin:-8px -8px 0 0; cursor:pointer}
+  .popupForm .textfield{width:239px; height:24px}
+  .popupForm .textarea{width:239px; height:110px; border:solid #ced4d9 1px; overflow:auto}
+  .popupForm .button{width:75px}
+
+#contactForm{position:absolute; display:none}
+
+#loginForm{position:absolute; top:25px; right:25px; display:none}
+
+#selectPlace{width:200px; position:absolute; display:none}
+  #selectPlace .middle{padding:30px 18px 5px 18px}
+  #selectPlace UL{list-style:none; margin:0; padding:0}
+  #selectPlace LI {height:20px; padding:0; margin:0}
+  
+#suplayersForm{position:absolute; display:none; width:680px; top:50%; left:50%; margin-left:-340px}  
+  .suplayers{list-style:none; width:100%; margin:10px 0 10px 0; padding:0}
+    .suplayers LI{width:200px; height:14px; display:block; float:left; margin:0 20px 15px 0; overflow:hidden}
+    #suplayersForm SPAN.unchecked{width:14px; height:14px; margin-right:8px; display:block; float:left; cursor:pointer; background:url('../images/checkbox.png') no-repeat top left}
+    #suplayersForm SPAN.checked{width:14px; height:14px; margin-right:8px; display:block; float:left; cursor:pointer; background:url('../images/checkbox_a.png') no-repeat top left}
+   #suplayersForm .select{float:left; margin-top:10px}
+   #suplayersForm .button{float:right; margin-top:10px; width:40px}

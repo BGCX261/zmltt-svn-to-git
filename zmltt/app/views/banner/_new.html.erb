@@ -1,0 +1,107 @@
+<% form_for :banner, :html => {:method => "post", :id=>"editbanner-form"} do |p| %>
+  <table>
+    <tr>
+      <td>
+        Город:
+      </td>
+      <td><% @banner.city ='Москва' if @banner.city.nil? %>
+        <%= text_field_with_auto_complete :banner, :city, {}, {:method => :get} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%= p.select :ulic, ['ул.','шоссе','пер.','аллея','проспект','площадь','набережная','бульвар','проезд','км']%>:
+      </td>
+      <td>
+        <%= text_field_with_auto_complete :banner, :street, {}, {:method => :get} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Дом:
+      </td>
+      <td>
+        <%= p.text_field :house, :id =>'house' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Строение:
+      </td>
+      <td>
+        <%= p.text_field :stroen, :id =>'stroen' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Корпус
+      </td>
+      <td>
+        <%= p.text_field :korpus, :id =>'korpus' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Тип:
+      </td>
+      <td>
+        <%= p.select :tp, tip%>
+      </td>
+    </tr>
+    <tr>
+
+      <td>
+        Примечание:
+      </td>
+      <td>
+        <%= p.text_area :primech, :rows=>'3', :id =>'primech'%><br>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Свет:
+      </td>
+      <td>
+        <%= p.select :light, ['есть','нет'], :id =>'light' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Сторона:
+      </td>
+      <td>
+        <%= p.select :storona, ['A','A1','A2','A3','A4','B','B1','B2','B3','C'], :id =>'storona' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Подрядчик:
+      </td>
+      <td>
+
+        <%= p.select(:contractor_id, @contractors.map {|u| [u.name,u.id]}, :id =>'contractor_id') %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        секретный номер:
+      </td>
+      <td>
+        <%= p.text_field :xnomer, :id =>'xnomer' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      Заметка:    </td>
+      <td>
+        <%= p.text_area :zametka, :rows=>'3', :id =>'zametka'%>
+      </td>
+    </tr>
+  </table>
+<% end %>
+<%  ['banner_ulic','banner_tp','banner_light','banner_storona','banner_contractor_id','banner_street','banner_city','house','stroen','korpus','primech','xnomer','zametka'].each do |nm| %>
+  <%= observe_field(nm,
+    :frequency => 3,
+    :url => { :controller =>'banner', :action => 'upatr', :id => @banner.id, :name => nm },
+    :with => "'value=' + encodeURIComponent(value)") %>
+<%end%>

@@ -1,0 +1,12 @@
+<% if params[:from] != 'addcontact' %>
+  <div>
+    <div style="float:left;">
+      <%= render :partial => "new"  %>
+    </div>
+    <div id="contacts" style="float:right;">
+    <%end%>
+    <%= render :partial => "client/phones", :locals => { :client => @contractor, :cntrl => 'contractor' }  %>
+    <% if params[:from] != 'addcontact' %>
+    </div>
+  </div>
+<%end%>

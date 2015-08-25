@@ -1,0 +1,17 @@
+new Effect.Highlight                visual_effect(:highlight)  
+new Effect.Appear                   visual_effect(:appear)  
+new Effect.Fade                     visual_effect(:fade)  
+new Effect.Puff                     visual_effect(:puff)  
+new Effect.BlindDown                visual_effect(:blind_down)  //разъезжается вниз
+new Effect.BlindUp                  visual_effect(:blind_up)  
+new Effect.SwitchOff                visual_effect(:switch_off)  
+new Effect.SlideDown                visual_effect(:slide_down)  
+new Effect.SlideUp                  visual_effect(:slide_up)  
+new Effect.DropOut                  visual_effect(:drop_out)  
+new Effect.Shake                    visual_effect(:shake)  //влева-вправо двигается
+new Effect.Pulsate                  visual_effect(:pulsate)  
+new Effect.Squish                   visual_effect(:squish)  //уменьшаяется маштаб
+new Effect.Fold                     visual_effect(:fold)  //снизу вверх, слева направо
+new Effect.Grow                     visual_effect(:grow)  //увеличивается маштаб
+new Effect.Shrink                   visual_effect(:shrink)  //уменьшается маштаб
+new Effect.ScrollTo                 visual_effect(:scroll_to)  

@@ -1,0 +1,118 @@
+<div>
+  <div style="float:left;">
+    <% p=@promo %>
+    <table>
+      <tr>
+        <td>
+          ФИО:
+        </td>
+        <td>
+          <%= p.fio %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Город:
+        </td>
+        <td>
+          <%= p.city %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Рост:
+        </td>
+        <td>
+          <%= p.rost %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Дата рождения:
+        </td>
+        <td>
+          <%= p.birthday.to_s(:rusdate) if not p.birthday.nil? %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Цвет волос:
+        </td>
+        <td>
+          <%= p.color %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          Мед.книжка:
+        </td>
+        <td>
+          <%= p.medbook %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Размер одежды:
+        </td>
+        <td>
+          <%= p.clothsize %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Паспортные данные:
+        </td>
+        <td>
+          <%= p.pasport %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Место проживания:
+        </td>
+        <td>
+          <%= p.livepoint %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Ближайшее метро:
+        </td>
+        <td>
+          <%= p.metro %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Пол:
+        </td>
+        <td>
+          <%= p.sex %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Отдел?:
+        </td>
+        <td>
+          <%= p.otdel %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Контакт:
+        </td>
+        <td>
+          <%= p.contact %>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+  <div style="float:right;">
+    <% @promo.photos.each do |p| %>
+      <%= link_to_remote image_tag(url_for(:controller =>'banner', :action => 'file_id', :id => p.id), :size => "250"), :update => 'photo_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'office', :action => "showphoto", :id => p.id} %>
+    <%end%>
+  </div>
+</div>

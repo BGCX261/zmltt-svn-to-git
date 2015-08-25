@@ -1,0 +1,8 @@
+<% if logged_in? %>
+  Подрядчики: Все: <%= link_to 'да', {:controller => 'banner', :action => 'showall', :id => 'podr', :do =>'all'}%> /
+  <%= link_to 'нет', {:controller => 'banner', :action => 'showall', :id => 'podr', :do =>'notall'}%> |
+
+  <% @podr.map do |elem| %>
+    <%= elem %>: <span id="spodr_div_<%=elem%>"><%= showpodr(elem) %></span> |
+  <%end%><br/><br/>
+<%end%>

@@ -1,0 +1,67 @@
+<% params[:cntrl]=cntrl%>
+<table border="1">
+  <tr>
+    <td></td>
+    <!--<td>№</td>-->
+    <td>Название</td>
+    <td>Контактное лицо</td>
+    <td>Телефон</td>
+    <td>Мобильный</td>
+    <td>ICQ</td>
+    <td>e-mail</td>
+    <td>www</td>
+    <% if params[:cntrl] == 'client' %>
+      <td>Контакт</td>
+    <%else%>
+      <td>Отрасль</td>
+    <%end%>
+    <td>Примечание</td>
+  </tr>
+  <% if not clients.nil? %>
+    <% i=0 %>
+    <% clients.each do |p| %>
+      <% if p.name!='Не зарегистрированный' %>
+        <%  loadinfo(p) %>
+        <tr id="delcl_div_<%= p.id.to_s%>">
+          <%i+=1%>
+          <% if cntrl == 'client' %>
+            <td>
+              <span id="delclpre_div_<%= p.id.to_s%>"><%= link_to imgno, {:controller =>"order", :action => "new", :id => p.id} %></span>
+            </td>
+            <!--<td><%= lnkcl(p.id.to_s, p.id)%></td>-->
+            <td><%= lnkcl(p.name, p.id) %></td>
+            <td><%= lnkcl(@human.name, p.id,'phone') %></td>
+            <td><%= lnkcl(@stac.number, p.id,'phone') %></td>
+            <td><%= lnkcl(@mob.number, p.id,'phone') %></td>
+            <td><%= lnkcl(@icq.number, p.id,'phone') %></td>
+            <td><%= mail_to(@email.number) %></td>
+            <td><a href="http://<%= @www.number %>" TARGET="_blank"><%= @www.number %></a></td>
+            <td><span id='calendar_div_<%=p.id.to_s%>'><%= calendarh(p.contact, 'office', 'setcontact', @contact, 's', p.id.to_s, 'calendar_div_'+p.id.to_s) %></span></td>
+            <% @client = p
+            @client.zametka = 'нет' if @client.zametka.nil? or @client.zametka.size < 2
+          %>
+            <td><%= in_place_editor_field :client, 'zametka',{} ,:rows=>4,:cols=>35 %></td>
+            <td><%= editcl(p.id) %></td>
+            <td><%= deldivc('client', "del", p.id, "delclpre_div_#{p.id.to_s}",imgremove, p.name) %></td>
+          <%else%>
+            <td><%= lnkc(p.nid, p.id)%></td>
+            <td><%= lnkc(p.name, p.id) %></td>
+            <td><span id="delclpre_div_<%= p.id.to_s%>"><%= lnkc(@human.name, p.id) %></span></td>
+            <td><%= lnkc(@stac.number, p.id) %></td>
+            <td><%= lnkc(@mob.number, p.id) %></td>
+            <td><%= lnkc(@icq.number, p.id) %></td>
+            <td><%= mail_to(@email.number) %></td>
+            <td><a href="http://<%= @www.number %>" TARGET="_blank"><%= @www.number %></a></td>
+            <% @contractor = p
+            @contractor.zametka = 'нет' if @contractor.zametka.nil? or @contractor.zametka.size < 2
+          %>
+            <td><%= @contractor.otrasl %></td>
+            <td><%= in_place_editor_field :contractor, 'zametka',{} ,:rows=>4,:cols=>35 %></td>
+            <td><%= editdiv('[e]',{:controller => 'contractor',:action => "edit", :id => p.id})%></td>
+            <td><%= deldivc('contractor', "del", p.id,"delclpre_div_#{p.id.to_s}",'[x]', p.name) %></td>
+          <%end%>
+        </tr>
+      <%end%>
+    <%end%>
+  <%end%>
+</table>

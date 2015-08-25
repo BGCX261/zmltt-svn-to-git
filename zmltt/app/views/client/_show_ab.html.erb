@@ -1,0 +1,145 @@
+<table>
+  <tr>
+    <td>
+      Фактический адресс:
+    </td>
+    <td>
+      <%= @client.adresreal %>
+    </td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <%@client.rekvizits.each do |r| %>
+      <td>
+        <table>
+          <tr>
+
+            <td>
+              Юридическое название:
+            </td>
+            <td>
+              <%= r.name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Юридический адресс:
+            </td>
+            <td>
+              <%= r.adressur %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              ИНН:
+            </td>
+            <td>
+              <%= r.inn %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              КПП:
+            </td>
+            <td>
+              <%= r.kpp %>
+            </td>
+          </tr>
+          <tr>
+
+            <td>
+              Расчетный счет:
+            </td>
+            <td>
+              <%= r.rschet%><br>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Банк:
+            </td>
+            <td>
+              <%= r.bank %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Кор.счет:
+            </td>
+            <td>
+              <%= r.kschet %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              БИК:
+            </td>
+            <td>
+
+              <%= r.bik %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b><%= r.gendir %>:</b>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              Фамилия:
+            </td>
+            <td>
+              <%= r.gendirfam %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            Имя:    </td>
+            <td>
+              <%= r.gendirname %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            Отчество:    </td>
+            <td>
+              <%= r.gendirotch %>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <b><%= r.bux %>:</b>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              Фамилия:
+            </td>
+            <td>
+              <%= r.buxfam %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            Имя:    </td>
+            <td>
+              <%= r.buxname %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            Отчество:    </td>
+            <td>
+              <%= r.buxotch %>
+            </td>
+
+          </tr>
+        </table>
+      </td>
+    <% end %>
+  </tr>
+</table>

@@ -1,0 +1,12 @@
+<%= select_tag "promos", options_for_select(['все','модели','супервайзеры','супервайзеры на машине','промоутеры','листовщики'],"все"), :id => 'promos' %><br/>
+<%= rlink("+add",{:controller => 'promo', :action => 'add'}) %>
+<div id="results">
+  <%= render :partial => 'list'%>
+</div>
+<%= observe_field(:promos,
+  :frequency => 2,
+  :update => :results,
+  :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')",
+  :url => { :action => :filtr },
+  :with => "'otdel=' + encodeURIComponent(value)") %>

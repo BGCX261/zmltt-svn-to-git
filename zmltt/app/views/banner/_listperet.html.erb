@@ -1,0 +1,64 @@
+<% form_for :banner, :url => { :action => "recycler" } do %>
+  <% allsum=0 %>
+  <table border="0" id=main>
+    <tr>
+      <td rowspan="2">-\+</td>
+      <td rowspan="2">Номер п\б</td>
+      <td rowspan="2">Адресс</td>
+      <td rowspan="2">Тип</td>
+      <%if logged_in? %>
+        <td rowspan="2">Подрядчик</td>
+      <%end%>
+      <% @bannermonthes.each do |month|%>
+        <td colspan="3" align="center"><%= month %></td>
+      <%end%>
+
+    </tr>
+    <% if params[:action] == 'recycler' %>
+      <tr>
+        <% @bannermonthes.each do |month|%>
+          <td align="center">I</td>
+          <td align="center">II</td>
+          <td align="center">III</td>
+        <%end%>
+        <td>Итого</td>
+      </tr>
+    <%end%>
+    <% @peret.each do |p| %>
+      <tr id="delban_div_<%= p.id.to_s%>">
+        <% if not session[:order].nil? %>
+          <td><div id="add_div_<%=p.id.to_s%>">
+              <%if session[:order] and Price.exists?({:banner_id =>p.id, :order_id => session[:order]})%>
+                <%= addel(p.id,"del") %>
+              <%else%>
+                <%= addel(p.id,"add") %>
+              <%end%>
+          </div></td>
+        <%end%>
+        <td><%= lnk(p.contractor.nid+'.'+p.xnomer, p.id) if not p.contractor.nil? %></td>
+
+        <td><span id="delbanpre_div_<%= p.id.to_s%>"><%= lnk(adress(p),p.id) %></span></td>
+        <td><%= p.tp %></td>
+
+        <%if logged_in? %>
+
+          <td><%= lnkc(p.contractor.name,p.contractor.id) if not p.contractor.nil?%></td>
+
+        <%end%>
+        <% summ = 0 %>
+        <% @bannermonthes.each do |month|%>
+          <% ['1','2','3'].each do |dek|%>
+            <td><%= (summ += (@monthdek[p.id.to_s+month+dek]).to_i; @monthdek[p.id.to_s+month+dek]) if @monthdek[p.id.to_s+month+dek] %></td>
+          <%end%>
+        <%end%>
+        <td><%= allsum+=summ; summ %></td>
+        <!--<td><%= link_to_remote "[+]", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller=> 'order', :action => "setextra", :bannerid => p.id}%></td>-->
+        <td><%= link_to_remote ">>", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner');", :method => 'get', :url => {:controller =>'office', :action => "showperet", :id => p.id}%></td>
+      </tr>
+    <%end%>
+    <tr>
+      <td colspan="<%= 5 + @bannermonthes.size*3 %>" style="text-align:right;">Общая сумма</td>
+      <td><%= allsum %></td>
+    </tr>
+  </table>
+<%end%>

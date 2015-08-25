@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banner>
+  <info>
+    <id><%= @banner.id.to_s %></id>
+    <adress><%= adress(@banner,1) %></adress>
+    <city><%= @banner.city  %></city>
+    <street><%= @banner.street  %></street>
+    <house><%= @banner.house  %></house>
+    <stroen><%= @banner.stroen  %></stroen>
+    <korpus><%= @banner.korpus  %></korpus>
+    <ulic><%= @banner.ulic  %></ulic>
+    <xnomer><%= @banner.xnomer %></xnomer>
+    <number><%= @banner.contractor.nid if not @banner.contractor.nil? %>.<%= @banner.xnomer %></number>
+    <light><%= @banner.light %></light>
+    <online><%= @banner.online %></online>
+    <primech><%= @banner.primech %></primech>
+    <side><%= @banner.storona %></side>
+    <type><%= @banner.tp %></type>
+    <message><%= @banner.zametka%></message>
+    <%- if logged_in? and not @banner.contractor_id.nil? -%>
+      <suplaer>
+        <%-loadinfo(@banner.contractor)-%>
+        <name><%= @banner.contractor.name %></name>
+        <human><%= @human.name %></human>
+        <mob><%= @mob.number %></mob>
+        <stac><%= @stac.number %></stac>
+        <icq><%= @icq.number %></icq>
+        <email><%= @email.number %></email>
+        <www><%= @www.number %></www>
+        <otrasl><%= @banner.contractor.otrasl %></otrasl>
+        <zametka><%= @banner.contractor.zametka %></zametka>
+      </suplaer>
+    <%-end-%>
+    <onlines>
+      <%- find_online(@banner.id).each do |on| -%>
+        <item>
+          <date><%= showdata(@banner.tp,on) %></date>
+          <price><%= on.coast %></price>
+        </item>
+      <%-end-%>
+    </onlines>
+  </info>
+  <photos type="array">
+    <% @photo.each do |p| %>
+      <item><%= p.id %></item>
+    <%end%>
+  </photos>
+</banner>

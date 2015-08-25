@@ -1,0 +1,43 @@
+http://java.sun.com/javase/downloads/index.jsp
+(JDK 6 Update 6)
+
+http://dlc.sun.com.edgesuite.net/netbeans/6.1/final/
+(Ruby)
+
+http://www.collab.net/downloads/subversion/
+(CollabNet Subversion Command Line Client v1.4.6 (for Windows))
+e-mail\password: cavernxxx@bk.ru\qwerty92
+
+http://dev.mysql.com/downloads/mysql/5.0.html#win32
+(Windows ZIP/Setup.EXE (x86)        5.0.51b    44.3M)
+
+http://rubyforge.org/frs/?group_id=167&release_id=17128
+(ruby186-26.exe 23.72 MB    363,199    i386    .exe (Windows executable))
+
+
+потом в консоли(cmd.exe) из любого места:
+gem install rails -v 2.0.2 --include-dependencies
+
+запускаем установленный netbeans.
+Versioning -> Checkout
+
+Repos. URL: https://zmltt.googlecode.com/svn
+User: cavernxxx@gmail.com
+Password: TB2TF4rr7rw2
+Next...
+Repos. Folder: zmltt
+Repos. Revision: пусто
+Skip .... content: галочку не ставить
+Local folder: выбрать где будет храниться приложение
+Scan for ... project: поставить галочку
+Finish
+
+Tools -> options -> сверху Ruby
+убедиться что путь до интерпритатора того что установили а не jruby
+
+правой кнопкой мыши кликнуть по проекту:
+Run rake task -> db -> create -> all (возможно само сделает, тогда напишет что уже существует бд)
+Run rake task -> db -> migrate
+
+затем сверху в меню Run -> run main project...
+и если все хорошо, то оно откроет браузер и ты все увидишь

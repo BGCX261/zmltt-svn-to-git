@@ -1,0 +1,41 @@
+<div class="middleLinks">
+  <table cellpadding="0" cellspacing="0">
+    <tr>
+
+      <%  if session[:later]=='0' %>
+        <td class="first">0</td>
+      <%  else %>
+        <!-- <%= link_to_remote '0', :update => 'results', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller =>'banner', :action => "livesearch", :later => '0'}%> -->
+        <td class="first"><%= link_to '0', {:controller =>'banner', :action => "livesearch", :later => '0'} %></td>
+      <%end%>
+
+
+      <% (('1'..'9').to_a-['0','4','7']).each do |a| %>
+        <%  if session[:later]==a.to_s %>
+          <td class="margin"></td>
+          <td><%= a.to_s %></td>
+        <%  else %>
+          <td class="margin"></td>
+          <td><%= link_to a.to_s, {:controller =>'banner', :action => "livesearch", :later => a.to_s} %></td>
+        <%end%>
+      <%end%>
+      <% (('А'..'Ю').to_a-['Ъ','Ь','Ы']).each do |a| %>
+        <%  if session[:later]==a.to_s %>
+          <td class="margin"></td>
+          <td><%= a.to_s %></td>
+        <%  else %>
+          <!-- <%= link_to_remote a.to_s, :update => 'results', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller =>'banner', :action => "livesearch", :later => a.to_s}%> -->
+          <td class="margin"></td>
+          <td><%= link_to a.to_s, {:controller =>'banner', :action => "livesearch", :later => a.to_s} %></td>
+        <%end%>
+      <%end%>
+
+      <%  if session[:later]=='Я' %>
+        <td class="last">Я</td>
+      <%  else %>
+        <!-- <%= link_to_remote 'Я', :update => 'results', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller =>'banner', :action => "livesearch", :later => 'Я'}%> -->
+        <td class="last"><%= link_to 'Я', {:controller =>'banner', :action => "livesearch", :later => 'Я'} %></td>
+      <%end%>
+    </tr>
+  </table>
+</div>

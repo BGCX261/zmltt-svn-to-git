@@ -1,0 +1,5 @@
+<% params[:size] = params['amp;size'] if params['amp;size'] %>
+<% if params[:size]!=Banner.find(params[:id]).photos.collect.size.to_s %>
+  <a href="#" onClick="<%= remote_function(:update => "main_div",
+       :url => {:controller=>params[:ctrl], :action => 'edit', :id=>params[:id] }) %>">11</a>
+   <%end%>

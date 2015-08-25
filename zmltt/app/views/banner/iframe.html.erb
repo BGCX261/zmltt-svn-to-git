@@ -1,0 +1,12 @@
+<% @photo.each do |p| %>
+  <div>
+    <%= image_tag url_for(:action => 'file_id', :id => p.id), :width=>'400pt' %>
+    <td><%= link_to imgremove, {:action => "delphoto", :id => p.id}, :confirm => "Точно удалить фото?"%></td>
+  </div>
+<%end%>
+<%@photo = Photo.new()%>
+<% form_for :photo, :url => { :action => 'addphoto', :ctrl => params[:ctrl], :id => params[:id]  }, :html => { :method => 'post', :multipart => true, :id=>"addphoto-form" } do |f| -%>
+  <%= hidden_field params[:ctrl]+"_id", 'id', :value=>params[:id] %>
+  <p><%= f.file_field :uploaded_data %></p>
+  <p><%= submit_tag :Create %></p>
+<% end -%>

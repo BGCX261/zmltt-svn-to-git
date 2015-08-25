@@ -1,0 +1,3 @@
+<div id="results"><%= render :partial => "listextra"  %></div>
+
+<%= link_to_remote "+add", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:action => "addextra"}%>

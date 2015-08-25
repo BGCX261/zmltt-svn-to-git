@@ -1,0 +1,26 @@
+<%= error_messages_for 'extra' %>
+
+<% form_for :extra do |p| %>
+  <table>
+    <tr>
+      <td>
+        Дополнительная услуга:
+      </td>
+      <td>
+        <%= p.text_area :name, :rows => '3' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Цена:
+      </td>
+      <td>
+        <%= p.text_field :coast %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= submit_tag "Сохранить" %></td>
+    </tr>
+  </table>
+<% end %>

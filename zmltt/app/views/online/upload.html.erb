@@ -1,0 +1,6 @@
+<h1>on-line</h1>
+<%= link_to 'отчистить on-line', url_for(:action => 'erase'), :confirm => 'Вы уверены что хотите отчистить on-line?' %>
+<% form_for :online, :url => { :action => 'online' }, :html => { :multipart => true } do |f| -%>
+  <p><%= f.file_field :online_data %></p>
+  <p><%= submit_tag 'Обновить' %></p>
+<% end -%>

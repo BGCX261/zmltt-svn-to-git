@@ -1,0 +1,16 @@
+<% if current_user.login == 'zm-admin'%>
+  <%= rlink("+Добавить", {:controller=> 'account', :action => "signup"})%>
+<%end%>
+[<%= link_to "архив", {:controller=> 'personnel', :action => "arch"}%>]
+<table>
+  <tr>
+    <td>Ф.И.О.</td><td>Телефон</td><td>Отдел</td><td>e-mail</td>
+  </tr>
+  <%@users.each do |u|%>
+    <tr id="deluser_div_<%= u.id.to_s%>">
+      <td><span id="deluserpre_div_<%= u.id.to_s%>"><%= rlink(u.fio,{:action => 'show', :id => u.id}) %></span></td><td><%= u.phone %></td><td><%= u.otdel %></td><td><%= mail_to u.email %></td><td><%=  editdiv('[e]',{:action => 'edit', :id => u.id })%></td>
+      <td><%= deldivc('personnel', "to_arch", u.id, "deluserpre_div_#{u.id.to_s}", '[x]', u.fio) %></td>
+
+    </tr>
+  <%end%>
+</table>

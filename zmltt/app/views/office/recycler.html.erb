@@ -1,0 +1,24 @@
+<% tester = 'false' %>
+<div id="results">
+  <%if not @banner.nil? and @banner.size > 0%>
+    <% tester = 'true' %>
+    Щиты:
+    <div id="banners"><%= render :partial => "banner/listbanner"  %></div>
+  <%end%>
+  <%if not @peret.nil? and @peret.size > 0%>
+    <% tester = 'true' %>
+    Перетяжки:
+    <div id="perets"><%= render :partial => "banner/listperet"  %></div>
+  <%end%>
+  <% if tester == 'false' %>
+    Вы пока ничего себе не выбрали
+  <%end%>
+  <br/><br/>
+  <hr/>
+  Напишите пояснение к заказу и как с Вами связаться.
+  <% form_for :order, :url => { :controller =>"order", :action => "update", :id => 'order' }, :html => {:method => "post", :id=>"order-form"} do |f| -%>
+    <%= f.text_area(:order, :cols => 50, :rows => 10) %>
+  <%end%>
+  <input type="button" value="Сохранить" onClick="alert('Сохраненно, спасибо!');">
+  <%= easysave("order-form",{:controller =>"order", :action => "update", :name => 'order'}) %>
+</div>

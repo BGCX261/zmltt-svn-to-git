@@ -1,0 +1,45 @@
+<%if not params[:id].nil? %>
+  <%= addel(@banner.id,@do) %>
+<%else%>
+  <%= link_to "[выбрать еще]", {:action => "index"}%>
+  <%= link_to "[обновить]", {:action => "recycler"}%>
+  Формирование коммерческого предложения для <%= @client.name %> <% if logged_in? %>
+    <!--[<%= link_to_remote "изменить", :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :update => 'main_div', :method => 'get', :url => {:controller=> 'client', :action => "index"}%>]--><%end%>
+  <div id="results">
+    <%if not @banner.nil? and @banner.size > 0%>
+      Щиты:
+      <div id="banners"><%= render :partial => "listbanner"  %></div>
+    <%end%>
+    <%if not @peret.nil? and @peret.size > 0%>
+      Перетяжки:
+      <div id="perets"><%= render :partial => "listperet"  %></div>
+    <%end%>
+  </div>
+  <br/>Дополнительно прилагается:
+  <table border="1">
+    <tr>
+      <td>Описание</td><td>кол-во</td><td>Цена(руб.)</td>
+    </tr>
+    <% extras = Array.new()
+    @order.prices.each do |p| %>
+      <% if not p.extra_id.nil? and not extras.include?(p.wtf + p.coast) %>
+        <% extras += [p.wtf + p.coast] %>
+        <% @price=p %>
+        <tr id="delexfree_div_<%= p.id.to_s%>">
+          <td><span id="delexfreepre_div_<%= p.id.to_s%>"><% if logged_in? %><%= in_place_editor_field :price, 'wtf' %><%else%><%= p.wtf %><%end%></span></td>
+          <!--<td><%= in_place_editor_field :price, 'size' %></td>-->
+          <td><%= pricesize(p) %></td>
+          <td><% if logged_in? %><%= in_place_editor_field :price, 'coast' %><%else%><%= p.coast %><%end%></td>
+          <!--<td><%= deldiv('order', "erasefree", p.id, "delexfreepre_div_#{p.id.to_s}", '[x]') %></td>-->
+        </tr>
+
+      <%end%>
+    <%end%>
+  </table>
+  <!-- <%= link_to_remote "Добавить из списка", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller=> 'order', :action => "setextra"}%> -->
+  <% if logged_in? %>
+    <br>
+    <%= link_to_remote "Добавить", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller=> 'order', :action => "freeextra"}%>
+  <%end%>
+
+<%end%>

@@ -1,0 +1,81 @@
+<%# params[:search] = nil if (params[:search] == "0-9") or (params[:search].size < 3) %>
+
+<!-- Удалить следующие строки когда будут не нужны -->
+<!--<%= select_tag "city", options_for_select(@citys,(session[:city] || "Москва и направления")), :id => 'citys' %>
+<%= observe_field(:citys,
+  :frequency => 2,
+  :update => :results,
+  :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')",
+  :url => { :action => :livesearch },
+  :with => "'city=' + encodeURIComponent(value)") %> -->
+<!-- до сюда -->
+<!-- следующие ссылки должны отправлять значение на урл
+http://zimaletto.su/banner/livesearch/
+c "'city=' + encodeURIComponent(value)" -->
+<!--<a href="#" id="selectPlaceLink">Москва и направления</a>
+<%= rlink session[:city], {:action => :livesearch, :city => session[:city]}, 'results' %>--><!-- Или нужны были рабочие урлы? тогда предыдущую строку удалить -->
+
+<div class="center">    
+<div class="minwidth">        
+<div class="logo"><a href="#"><img src="/images/logo.png"/></a></div>
+<div class="topLinks">                
+  <ul class="links green">
+    <li><span id="online_div"><%= onlinelabel %></span></li>
+    <li><a href="#">Спецпредложения</a></li>
+  </ul>
+  <div class="right">
+    <div class="popupForm roundered" id="selectPlace">
+      <div class="top"><img src="/images/corners.png" class="left" hspace="0"><img src="/images/corners.png" class="right" hspace="0"></div>
+
+
+      <div class="middle">
+        <ul>
+          <%@citys.each do |c|%>
+            <li><%= rlink c, {:action => :livesearch, :city => c}, 'results' %></li>
+          <%end%>
+        </ul>
+      </div>
+
+      <div class="bottom"><img src="/images/corners.png" class="left" hspace="0"><img src="/images/corners.png" class="right" hspace="0"></div>
+    </div>
+    <a href="#" id="selectPlaceLink"><%=session[:city]%></a>
+  </div>
+</div>   
+
+
+<div class="roundTextfield">
+  <div class="left">
+    <div class="right">
+      <%= spiner %>
+      <%= text_field_tag :search, params[:search] %>
+    </div>
+  </div>
+</div>
+
+<div id='laters'>
+  <%= render :partial => 'laters'%>
+</div>
+<br/>
+<div id='contractorsctrl'>
+  <%= render :partial => 'podrcontrol'%>
+</div>
+<div id='tipsctrl'>
+<%= render :partial => 'tiplist'%>
+</div>
+<%= observe_field(:search, 
+  :frequency => 3,
+  :update => :results,
+  :before => "Element.show('spinner')",
+  :success => "Element.hide('spinner')",
+  :url => { :action => :livesearch },
+  :with => "'search=' + encodeURIComponent(value)") %>
+
+<% if logged_in? %>
+  <br/>
+  <% if current_user.login == 'zm-admin'%>
+    <%= link_to_remote "+Добавить", :update => 'main_div', :before => "Element.show('spinner')", :confirm =>'Вы уверены что хотите создать?', :success => "Element.hide('spinner')", :method => 'get', :url => {:action => "add"}%>
+  <%end%>
+<%end%>
+<div id="results"><%= render :partial => "listbanner"  %></div>
+

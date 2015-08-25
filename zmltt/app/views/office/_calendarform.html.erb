@@ -1,0 +1,34 @@
+<%= calendarhnext("<<", params[:cntrl], params[:alt], (params[:id]||Time.now).to_date-1.month, params[:doing], params[:orderid], params[:upddiv], params[:div]) %>
+<%= calendarhnext(">>>", params[:cntrl], params[:alt], (params[:id]||Time.now).to_date+1.month, params[:doing], params[:orderid], params[:upddiv], params[:div]) %>
+
+<% params[:id] ||= Time.now %>
+<% datenow = params[:id].to_date %>
+<%= calendar(:year => datenow.year, :month => datenow.month, :today => params[:id].to_date ) do |d|
+  if    params[:doing] == 'r'
+    link_to d.mday, :controller =>'office',
+      :action =>'calendar_use',
+      :doing => params[:doing],
+      :cntrl =>params[:cntrl],
+      :alt => params[:alt],
+      :upddiv => params[:upddiv],
+      :id => d.to_s,
+      :lastdate => params[:id],
+      :orderid => params[:orderid]
+  else
+    link_to_remote d.mday,
+      :update => 'main_div',
+      :before => "Element.show('spinner')",
+      :success => "Element.hide('spinner')",
+      :method => 'get',
+      :url => {  :controller =>'office',
+      :action =>'calendar_use',
+      :doing => params[:doing],
+      :cntrl =>params[:cntrl],
+      :alt => params[:alt],
+      :upddiv => params[:upddiv],
+      :id => d.to_s,
+      :lastdate => params[:id],
+      :orderid => params[:orderid]
+    }
+  end
+end %>

@@ -1,0 +1,7 @@
+<%= update_page_tag do |page|
+  page.replace_html("results", render(:partial=>'listbanner'));
+  page.replace_html("laters", render(:partial=>'laters'));
+  page.visual_effect :highlight, 'results';
+end%>
+
+<%= showtip(params[:tip]) %>

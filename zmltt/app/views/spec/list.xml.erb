@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specials>
+  <%-@specials.each do |s|-%>
+	<special>
+	  <id><%= s.id %></id>
+	  <msg><%= s.msg %></msg>
+	  <name><%= s.name %></name>
+	  <url>http://zimaletto.su/spec/show/<%= s.id %></url>
+	</special>
+  <%-end-%>
+</specials>

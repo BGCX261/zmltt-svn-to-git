@@ -1,0 +1,30 @@
+<% client.contacts.each do |p| %>
+  <div>
+    <table>
+      <tr>
+        <td>Контактное лицо:</td><td><%= p.name %></td>
+      </tr>
+      <tr>
+        <td>Должность:</td><td><%= p.post %></td>
+      </tr>
+    </table><% i=0 %>
+    <% p.phones.each do |t| %>
+      <% i=i+1 %>
+      <table>
+        <tr>
+          <td>Телефон <%=i.to_s %>(<%= t.tip %>): </td>
+          <td><%if t.tip == 'e-mail'%>
+              <%= mail_to t.number %>
+            <%else%>
+              <%if t.tip == 'www'%>
+                <a href="http://<%= t.number %>" TARGET="_blank"><%= t.number %></a>
+              <%else%>
+                <%= t.number %>
+              <%end%>
+            <%end%>
+          </td>
+        </tr>
+      </table>
+    <%end%>
+  </div>
+<%end%>

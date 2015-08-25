@@ -1,0 +1,2 @@
+<%= render :partial => "orderlist" %>
+<%= link_to_remote "Сформировать новый заказ", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'client', :action => 'index'}%>

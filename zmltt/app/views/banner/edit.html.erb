@@ -1,0 +1,17 @@
+<div>
+  <div style="float:left;"><%= render :partial => "new", :locals => { :btn => "Сохранить"}  %></div>
+  <div style="float:right;">
+    <% @photo.each do |p| %>
+      <div>
+        <%= image_tag url_for(:action => 'file_id', :id => p.id), :width=>'400pt' %>
+        <td><%= link_to imgremove, {:action => "delphoto", :id => p.id}, :confirm => "Точно удалить фото?"%></td>
+      </div>
+    <%end%>
+    <iframe src="<%= url_for(:controller=>'banner',:action=>'iframe', :id =>@banner.id, :ctrl => 'banner') %>" height="500px" width="400px">
+      Ваш браузер не поддерживает фреймы!
+    </iframe>
+  </div>
+</div>
+<%= easysave("editbanner-form",{:controller =>'banner',:action => :edit}) %>
+<div id="perdivcall"></div>
+<%#= periodically_call_remote(:url => url_for(:controller=>'banner',:action => 'addphoto',  :id =>@banner.id, :ctrl => 'banner', :size => @banner.photos.collect.size.to_s, :escape => false), :frequency => '10', :update => 'perdivcall') %>

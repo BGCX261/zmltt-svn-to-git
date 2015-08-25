@@ -1,0 +1,31 @@
+<%banner = Banner.find(params[:id])%>
+<table>
+  <tr><td colspan="20">Вы работаете с поверхностью по адресу: <%= lnk(adress(banner),banner.id) %></td></tr>
+  <%if false #banner.tp == 'Перетяжки'%>
+    <tr>
+      <td>месяц</td><td>I декада</td><td>II декада</td><td>III декада</td><td>Изготовление</td>
+    </tr>
+    <%@price = Price.new()
+    @price.id=1%>
+    <% rumonthes().each do |m|%>
+      <tr>
+        <td><%= m %></td>
+        <% ['1','2','3'].each do |dek|%>
+          <td><% @price.month = getprice(m,dek,'notreal')%>
+          <%= in_place_editor_field :price, 'month', {:id => m+dek+'notreal'}, :url => { :controller => 'office', :action => 'set_price_dek', :coast => 'coast', :dek => dek, :month => m, :id => params[:id], :escape => false } %>
+          <br/><% @price.month = getprice(m,dek,'real')%>
+          <%= in_place_editor_field :price, 'month', {:id => m+dek+'real'}, :url => { :controller => 'office', :action => 'set_price_dek', :coast => 'realcoast', :dek => dek, :month => m, :id => params[:id], :escape => false } %>
+        <%end%>
+        <% sel = loadext(m) %>
+        <td><%= select_tag "makes", options_for_select((['нет','Печать на шелке','Печать на хлопке']+[sel]).uniq,sel), :id => 'makes'+m %>
+          <%= observe_field('makes'+m,
+            :frequency => 1,
+            :url => { :controller => 'order', :action => 'add2rec', :bannerid => params[:id], :month => m  },
+            :with => "'makes=' + encodeURIComponent(value)") %>
+        </td>
+      </tr>
+    <%end%>
+  <%else%>
+    поверхность добавлена
+  <%end%>
+</table>

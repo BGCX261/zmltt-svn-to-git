@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<client>
+  <id><%= @client.id %></id>
+  <name><%= h @client.name %></name>
+  <login><%= h @client.login %></login>
+  <adresreal><%= h @client.adresreal %></adresreal>
+  <password><%= h @client.password %></password>
+  <contact><%= h @client.contact %></contact>
+  <zametka><%= h @client.zametka %></zametka>
+  <contacts>
+    <%- @client.contacts.each do |p| -%>
+      <contact>
+        <id><%= p.id %></id>
+        <client_id><%= @client.id %></client_id>
+        <name><%= p.name %></name>
+        <post><%= p.post %></post>
+        <visible><%=  p.visible %></visible>
+        <numbers>
+          <%- p.phones.each do |t| -%>
+            <number type="<%= t.tip %>" id="<%= t.id %>" visible="<%= t.visible %>"><%= t.number %></number>
+          <%-end-%>
+        </numbers>
+      </contact>
+    <%-end-%>
+  </contacts>
+  <rekvizits>
+    <%- @client.rekvizits.each do |rekvizit|-%>
+      <rekvizit>
+        <id><%= rekvizit.id %></id>
+        <name><%= h rekvizit.name%></name>
+        <adressur><%= h rekvizit.adressur%></adressur>
+        <inn><%=rekvizit.inn%></inn>
+        <kpp><%=rekvizit.kpp%></kpp>
+        <rschet><%=rekvizit.rschet%></rschet>
+        <bank><%=rekvizit.bank%></bank>
+        <kschet><%=rekvizit.kschet%></kschet>
+        <bik><%=rekvizit.bik%></bik>
+        <gendir><%=rekvizit.gendir%></gendir>
+        <gendirosn><%=rekvizit.gendirosn%></gendirosn>
+        <gendirname><%=rekvizit.gendirname%></gendirname>
+        <gendirfam><%=rekvizit.gendirfam%></gendirfam>
+        <gendirotch><%=rekvizit.gendirotch%></gendirotch>
+        <bux><%=rekvizit.bux%></bux>
+        <buxname><%=rekvizit.buxname%></buxname>
+        <buxfam><%=rekvizit.buxfam%></buxfam>
+        <buxotch><%=rekvizit.buxotch%></buxotch>
+      </rekvizit>
+    <%-end-%>
+  </rekvizits>
+  <orders>
+    <%- @client.orders.each do |order|-%>
+      <order>
+        <order><%= order.order %></order>
+        <status><%=order.status%></status>
+        <zametka><%=order.zametka%></zametka>
+        <created_at><%=order.created_at%></created_at>
+        <id><%=order.id%></id>
+      </order>
+    <%-end-%>
+  </orders>
+</client>

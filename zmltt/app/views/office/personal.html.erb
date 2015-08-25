@@ -1,0 +1,60 @@
+<%  loadinfocontact() %>
+<div style="float:right;">
+  <table>
+    <tr>
+      <td>Логин: </td><td><%= in_place_editor_field :client, 'login'%></td>
+    </tr>
+    <tr>
+      <td>Пароль: </td><td><%= in_place_editor_field :client, 'password'%></td>
+    </tr>
+    <tr>
+      <td>Имя</td><td><%= @human.name %></td>
+    </tr>
+    <tr>
+      <td>гор</td><td><%= @stac.number %></td>
+    </tr>
+    <tr>
+      <td>моб</td><td><%= @mob.number %></td>
+    </tr>
+    <tr>
+      <td>ICQ</td><td><%= @icq.number %></td>
+    </tr>
+    <tr>
+      <td>e-mail</td><td><%= mail_to @email.number %></td>
+    </tr>
+    <tr>
+      <td>www</td><td><%= link_to @www.number, @www.number %></td>
+    </tr>
+  </table>
+</div>
+<div style="float:left;">
+  <h1>Личный кабинет "<%= @client.name %>"</h1>
+  <%= lnkcl('Заказы',params[:id],'order') %> |
+  <%= lnkcl('Договоры',params[:id],'contract') %> |
+  <%= lnkcl('Реквизиты',params[:id],'about') %> |
+  <%= lnkcl('Связь',params[:id],'phone') %> |
+  | <%= editcl(@client.id) %>
+
+  <% if params[:do]=='order' %>
+    <div id="results"><%= render :partial => "order/orderlist"  %></div>
+    <br/>
+    Новый заказ
+    <% form_for :order, :url => { :controller =>"order", :action => "new", :id => params[:id] } do |f| -%>
+      <%= f.text_area(:order, :cols => 50, :rows => 10) %><br/>
+      <%= submit_tag "Добавить" %>
+    <%end%>
+  <%end%>
+
+  <% if params[:do]=='contract' %>
+    <div id="results"><%= render :partial => "contractlist"  %></div>
+    <%= newdog(@client.id) %>
+  <%end%>
+
+  <% if params[:do]=='about' %>
+    <div id="results"><%= render(:partial => 'client/show_ab')%></div>
+  <%end%>
+
+  <% if params[:do]=='phone' %>
+    <div id="results"><%= render(:partial => 'client/show_ph', :locals => {:client => @client, :cntrl => 'client'})%></div>
+  <%end%>
+</div>

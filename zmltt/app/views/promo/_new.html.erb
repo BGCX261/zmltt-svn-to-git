@@ -1,0 +1,115 @@
+<% form_for :promo do |p| %>
+  <table>
+    <tr>
+      <td>
+        ФИО:
+      </td>
+      <td>
+        <%= p.text_field :fio %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Город:
+      </td>
+      <td><% @promo.city ='Москва' if @promo.city.nil? %>
+        <%= text_field_with_auto_complete :promo, :city, {}, {:method => :get} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Рост:
+      </td>
+      <td>
+        <%= p.text_field :rost %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Дата рождения:
+      </td>
+      <td><% @promo.birthday = '1901-12-31' if @promo.birthday.nil? or @promo.birthday.to_s.size < 1
+        @promo.birthday = @promo.birthday.to_s(:rusdate)%>
+        <%= p.text_field :birthday %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Цвет волос:
+      </td>
+      <td>
+        <%= text_field_with_auto_complete :promo, :color, {}, {:method => :get} %>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        Мед.книжка:
+      </td>
+      <td>
+        <%= p.select :medbook, ['есть','нет'] %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Размер одежды:
+      </td>
+      <td>
+        <%= p.text_field :clothsize %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Паспортные данные:
+      </td>
+      <td>
+        <%= p.text_area :pasport %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Место проживания:
+      </td>
+      <td>
+        <%= text_field_with_auto_complete :promo, :livepoint, {}, {:method => :get} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Ближайшее метро:
+      </td>
+      <td>
+        <%= text_field_with_auto_complete :promo, :metro, {}, {:method => :get} %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Пол:
+      </td>
+      <td>
+        <%= p.select :sex, ['муж.','жен.'] %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Отдел?:
+      </td>
+      <td>
+        <%= p.select :otdel, ['модели','супервайзеры','супервайзеры на машине','промоутеры','листовщики'] %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Контакт:
+      </td>
+      <td>
+        <%= p.text_field :contact %>
+      </td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td><%= submit_tag "Сохранить" %></td>
+    </tr>
+  </table>
+<% end %>

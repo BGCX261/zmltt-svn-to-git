@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>ZimaLetto</title>
+    <%= stylesheet_link_tag 'style' %>
+    <%= stylesheet_link_tag 'style2' %>
+    <%= stylesheet_link_tag 'calendar.css' %>
+    <%= javascript_include_tag :all %>
+  </head>
+  <body>
+    <div id="content">
+      <% unless flash[:notice].blank? %>
+        <div id="notification"><%= flash[:notice] %></div>
+        <%= update_page_tag do |page|
+          page.visual_effect :fade, 'notification', :duration => 10;
+        end%>
+
+      <% end %>
+      <%= link_to "Главная", {:controller=> 'banner', :action => "index"}%> |
+
+      <% if logged_in? %>
+        <%= link_to "Статус", {:controller=> 'order', :action => "enter"}%> |
+        <%= link_to "Подрядчики", {:controller=> 'contractor', :action => "index"}%> |
+        <%= link_to "Заказы", {:controller=> 'order', :action => "index"}%> |
+        <%= link_to "Промо", {:controller=> 'promo', :action => "index"}%> |
+        <% if current_user.login=='zm-admin' || current_user.login=='jdanov' %>
+          <%= link_to "Кадры", {:controller=> 'personnel', :action => "index"}%> |
+          <%= link_to "Клиенты", {:controller=> 'client', :action => "index"}%> |
+          <%= link_to "on-line", {:controller=> 'online', :action => "upload"}%> |
+        <%end%>
+        <%= link_to "Выйти", {:controller=> 'account', :action => "logout"}%> |
+        <%= rlink "Текущий заказ", {:controller=> 'banner', :action => "recycler"}%> |
+        Поверхностей: <%= Banner.find(:all).size.to_s %> |
+        Online: <%= Banner.find(:all, :conditions =>{:online =>'есть'}).size.to_s %> |
+      <%else%>
+        <%= link_to "Войти", {:controller=> 'order', :action => "enter"}%> |
+        <%= link_to "Мой заказ", {:controller=> 'office', :action => "recycler"}%> |
+      <%end%>
+
+      <%= spiner %><br/>
+      <div id="yield">
+        <%= yield %>
+      </div>
+      <div class="popup" id="main_div"></div>
+      <div class="popup" id="fademain"></div>
+      <div class="calendardiv" id="calendardiv"></div>
+      <div class="popupphoto" id="photo_div"></div>
+    </div>
+  </body>
+</html>

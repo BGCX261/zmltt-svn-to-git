@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nomerbase: MyString
+  city: MyString
+  street: MyString
+  house: MyString
+  stroen: MyString
+  primech: MyString
+  tp: MyString
+  light: MyString
+  storona: MyString
+  podr: MyString
+  xnomer: MyString
+  zametka: MyString
+
+two:
+  nomerbase: MyString
+  city: MyString
+  street: MyString
+  house: MyString
+  stroen: MyString
+  primech: MyString
+  tp: MyString
+  light: MyString
+  storona: MyString
+  podr: MyString
+  xnomer: MyString
+  zametka: MyString

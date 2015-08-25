@@ -1,0 +1,16 @@
+<h1>Пользователь: <%= current_user.fio %></h1>
+<% if current_user.cfg == 'client' %>
+  Отображение по <%= link_to "клиентам", {:controller => "office", :action => 'cfg', :statusv => 'order'}%>
+  <div id="results"><%= render :partial => "client/list", :locals => { :clients => @clients, :cntrl => 'client' }   %></div>
+  <%= link_to_remote "+add", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'client', :action => "add"}%>
+<%end%>
+<% if current_user.cfg == 'order' %>
+  Отображение по <%= link_to "заказам", {:controller => "office", :action => 'cfg', :statusv => 'client'}%>
+  <div id="results"><%= render :partial => "order/orderlist"  %></div>
+  <%= link_to_remote "Сформировать новый заказ", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'client', :action => 'index'}%>
+<%end%>
+<br/>
+<%= calendarh('календарь','order','status', params[:id]||Time.now) %>
+
+<%#= date_field('client', 'created_at', :value => Time.now.to_date) %>
+

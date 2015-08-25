@@ -1,0 +1,162 @@
+body 
+{
+    background-color: #666;
+    margin: 10px 10px;
+    font-family: 'Times New Roman', Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+table#main {border:1px solid #ccc;border-collapse:collapse; }
+table#main td{padding:5px;border:1px solid #ccc;} 
+
+table#banner {border:0px solid #ccc;border-collapse:collapse; }
+
+
+#results{padding-top:10px;} 
+
+#content
+{
+    background-color: #fff;
+    border: 5px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    float: left;
+    width: 95%;
+}
+#content1
+{
+    background-color: #fff;
+    border: 5px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    width: 700px;
+    float: left;
+
+}
+
+#imgremove{
+background-color: gray;
+background-image: url('/images/remove.png');
+}
+
+#imgremove:hover{
+background-color: white;
+}
+
+#content a{
+    color: blue;
+    text-decoration: none;
+}
+
+#notification 
+{
+    border: 5px solid #9c9;
+    background-color: #cfc;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.fieldWithErrors 
+{
+    border: 5px solid #f66;
+}
+
+img{
+    border: none;
+}
+
+.online{
+    background-color: #cfc;
+}
+
+.popup{
+/*
+    margin-left: auto;
+    margin-right: auto;   
+    z-index: 2;   
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 450px;
+  //position: absolute;
+    top: expression(
+         document.getElementsByTagName( 'main_div' )[0].scrollTop + "px"
+         );    */
+
+
+}
+
+.popupphoto{
+/*
+    margin-left: auto;
+    margin-right: auto;   
+    z-index: 2;   
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    width: 450px;
+  //position: absolute;
+    top: expression(
+         document.getElementsByTagName( 'main_div' )[0].scrollTop + "px"
+         );    */
+
+	line-height:10px;
+	padding-top:1px;
+	min-width: 50%;
+	position: absolute;	
+
+	position:fixed;
+	top:45%;
+	
+	z-index: +1;
+}
+
+div#main_div div#content {
+	background: url('/images/banner_bg.jpg') no-repeat left top !important;
+}
+
+div.popup {
+	position: fixed;
+	top: 10%;
+	left: 10%;
+        height: 550px;
+}
+
+* html div.poup {
+	position: absolute;
+}
+
+*:first-child+html div.popup {
+	height: auto !important;
+}
+
+* html div.poup {
+	position: absolute;
+}
+
+.calendardiv{
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 3;
+    top: 100px;
+    left: 250px;
+}
+
+.load{
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    z-index: 2;
+    top: 80px;
+    left: 150px;
+    display: none;
+}
+
+.transparent{
+    background-color: red;
+    float: left;
+    position: absolute;
+    z-index: 2;
+    top: 0px;
+    left: 0px;
+}
+

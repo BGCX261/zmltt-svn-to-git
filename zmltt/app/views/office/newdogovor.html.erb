@@ -1,0 +1,43 @@
+<%= error_messages_for 'dogovor' %>
+
+<% form_for :dogovor do |p| %>
+  <%= hidden_field 'clientid', 'id', :value=>params[:clientid] %>
+  <table>
+    <tr>
+      <td>
+        Тип договора:
+      </td>
+      <td>
+        <%= p.text_field :tip %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Организация:
+      </td>
+      <td>
+        <%= p.select(:ourfirm_id, @ourfirms.map {|u| [u.name,u.id]}) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Партнер:
+      </td>
+      <td>
+        <%= p.select(:client_id, @clients.map {|u| [u.name,u.id]}) %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Дата заключения:
+      </td>
+      <td>
+        <%= date_field('dogovor', 'data', :value => Time.now.to_date) %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= submit_tag 'btn' %></td>
+    </tr>
+  </table>
+<% end %>

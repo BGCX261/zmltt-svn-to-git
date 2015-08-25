@@ -1,0 +1,8 @@
+<%= update_page_tag do |page|
+  page.replace_html("results", render(:partial=>'banner/listbanner'));
+  page.replace_html("laters", render(:partial=>'banner/laters'));
+  page.replace_html("tipsctrl", render(:partial=>'banner/tiplist'));
+  page.visual_effect :highlight, 'results';
+end%>
+
+<%= onlinelabel %>

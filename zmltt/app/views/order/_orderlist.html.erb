@@ -1,0 +1,58 @@
+<table border="1">
+  <tr>
+    <% if params[:action]!='personal'%>
+      <td>Клиент</td>
+    <%end%>
+    <td>Описание</td>
+
+    <% if params[:action] != 'personal' and params[:action] != 'status'%>
+      <td>Менеджер</td>
+      <td>Телефон</td>
+    <%end%>
+    <td>Дата создания</td>
+    <td>Сумма</td>
+    <td>Себестоимость</td>
+    <td>Прибыль</td>
+    <td>Статус</td>
+    <% if params[:action] == 'status' %>
+      <td>Контакт</td>
+    <%end%>
+  </tr>
+  <% @orders.each do |p| %><% if p.prices.size > 0 or (not p.order.nil?)%>
+      <% @order = p
+      @order.status = 'не известно' if @order.status.size <2
+      @order.order = 'нет' if @order.order.nil? %>
+      <tr id="delord_div_<%= p.id.to_s%>">
+        <% if not params[:action]=='personal'%>
+          <td><%# if p.client.name!='Не зарегистрированный' %>
+              <span id="delordpre_div_<%= p.id.to_s%>"><%#= wtfclient(p.client_id)%></span>
+            <%#else%>
+              <%#=p.client.name%>
+            <%#end%>
+          </td>
+        <%end%>
+        <td><%= in_place_editor_field :order, 'order',{}, :rows => 4%></td>
+        <% if params[:action] != 'personal' and params[:action] != 'status'%>
+          <td><%= wtfuser(p.user_id).fio %></td>
+          <td><%= wtfuser(p.user_id).phone %></td>
+        <%end%><% co=0;re=0; %>
+        <td><%= helporder(p.created_at.to_date,p.id) %></td>
+        <td><%= helporder(co=coastx(p.id),p.id) %></td>
+        <td><%= helporder(re=realcoast(p.id),p.id) %></td>
+        <td><%= helporder(co-re,p.id) %></td>
+        <td><%= in_place_editor_field :order, 'status'%></td>
+        <% if params[:action] == 'status' %>
+          <td><span id='calendar_div_<%=p.id.to_s%>'><%= calendarh(p.contact, 'office', 'setcontact', p.contact, 's', p.id.to_s, 'calendar_div_'+p.id.to_s) %></span></td>
+        <%end%>
+        <td><%= helporder('Помочь', p.id) %></td>
+        <% if params[:action] != 'client' %>
+          <% if params[:action] != 'menager' and params[:action] != 'personal' and params[:action] != 'status'%>
+            <td><%= link_to "Закрепить заказ за мной", {:action => "control", :id => p.id}%></td>
+          <%end%>
+          <td><%= deldivc('order', "delorder", p.id, "delordpre_div_#{p.id.to_s}",imgremove,'') %></td>
+        <%end%>
+      </tr>
+    <%end%>
+  <%end%>
+</table>
+

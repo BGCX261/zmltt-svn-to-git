@@ -1,0 +1,16 @@
+<% (('0'..'9').to_a-['0','4','7']).each do |a| %>
+  <%  if session[:later]==a.to_s %>
+    <%= a.to_s %>
+  <%  else %>
+    <!-- <%= link_to_remote a.to_s, :update => 'results', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller =>'banner', :action => "livesearch", :later => a.to_s}%> -->
+    <%= link_to a.to_s, {:controller =>'banner', :action => "livesearch", :later => a.to_s} %>
+  <%end%>
+<%end%>
+<% (('А'..'Я').to_a-['Ъ','Ь','Ы']).each do |a| %>
+  <%  if session[:later]==a.to_s %>
+    <%= a.to_s %>
+  <%  else %>
+    <!-- <%= link_to_remote a.to_s, :update => 'results', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller =>'banner', :action => "livesearch", :later => a.to_s}%> -->
+    <%= link_to a.to_s, {:controller =>'banner', :action => "livesearch", :later => a.to_s} %>
+  <%end%>
+<%end%>

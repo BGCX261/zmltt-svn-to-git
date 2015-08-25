@@ -1,0 +1,63 @@
+<% if params[:from] != 'addcontact' %>
+  <div>
+    <div style="float:left;">
+      <% form_for :client, :html => {:method => "post", :id=>"clientrek-form"} do |p| %>
+        <table>
+          <tr>
+            <td>
+              Название:
+            </td>
+            <td>
+              <%= p.text_field :name %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Фактический адресс:
+            </td>
+            <td>
+              <%= p.text_field :adresreal %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <b>Для доступа в личный кабинет:</b>
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              Логин:
+            </td>
+            <td>
+              <%= p.text_field :login %>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Пароль:
+            </td>
+            <td>
+              <%= p.text_field :password %>
+            </td>
+          </tr>
+        </table>
+      <%end%>
+      <%@client.rekvizits.each do |r| %>
+        <%@rekvizit = r%>
+
+        <%= render :partial => "new", :locals => { :btn => "Сохранить", :funk => "edit"}  %>
+
+      <%end%>
+
+
+    </div>
+    <div id="contacts" style="float:right;">
+    <%end%>
+    <%= render :partial => "phones", :locals => { :client => @client, :cntrl => 'client' }  %>
+    <% if params[:from] != 'addcontact' %>
+    </div>
+  </div>
+
+  <%= easysave("clientrek-form",{:action => :edit}) %>
+<%end%>

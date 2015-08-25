@@ -1,0 +1,8 @@
+<div>
+  <div style="float:left;"><%= render :partial => "account/user"  %></div>
+  <div style="float:right;">
+    <iframe src="<%= url_for(:controller=>'banner',:action=>'iframe', :id =>@user.id, :ctrl => 'user') %>" height="500px" width="400px">
+      Ваш браузер не поддерживает фреймы!
+    </iframe>
+  </div>
+</div>

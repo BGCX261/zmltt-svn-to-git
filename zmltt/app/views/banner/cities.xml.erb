@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hlam>
+<cities>
+  <%-@citys.each do |b|-%>
+      <%-next if b.nil? or b.size < 3-%>
+    <city><%=b%></city>
+  <%-end-%>
+</cities>
+<sups>
+  <%-@podr.each do |p|-%>
+    <sup><%=p%></sup>
+  <%-end-%>
+</sups>
+</hlam>

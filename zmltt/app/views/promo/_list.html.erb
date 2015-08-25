@@ -1,0 +1,18 @@
+<table>
+  <tr>
+    <td>ФИО</td><td>Возраст</td><td>Пол</td><td>Мед книжка</td><td>Цвет волос</td><td>Город</td><td>Метро</td>
+  </tr>
+  <%@promos.each do |p|%>
+    <tr id="delpromo_div_<%= p.id.to_s%>">
+      <td><span id="delpromo_PRE_div_<%= p.id.to_s%>"><%= rlink(p.fio,{:action => 'show', :id => p.id.to_s}) %></span></td>
+      <td><%= rshow(howold(p.birthday),p.id) %></td>
+      <td><%= rshow(p.sex,p.id) %></td>
+      <td><%= rshow(p.medbook,p.id) %></td>
+      <td><%= rshow(p.color,p.id) %></td>
+      <td><%= rshow(p.city,p.id) %></td>
+      <td><%= rshow(p.metro,p.id) %></td>
+      <td><%= editdiv('[e]',{:action => 'edit', :id => p.id}) %></td>
+      <td><%= deldivc('promo', "del", p.id, "delpromo_PRE_div_#{p.id.to_s}", '[x]', p.fio) %></td>
+    </tr>
+  <%end%>
+</table>

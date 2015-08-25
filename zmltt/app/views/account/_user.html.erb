@@ -1,0 +1,44 @@
+<% form_for :user do |f| -%>
+  <p><label for="login">Ф.И.О.</label><br/>
+  <%= f.text_field :fio %></p>
+
+  <p><label for="otdel">Отдел</label><br/>
+  <%= f.select :otdel, ['Наружная реклама','BTL','Интернет','Media'] %></p>
+
+  <p><label for="post">Должность</label><br/>
+  <%= f.text_field :post %></p>
+
+  <p><label for="oklad">Оклад</label><br/>
+  <%= f.text_field :oklad %></p>
+
+  <p><label for="percent">Процент</label><br/>
+  <%= f.text_field :percent %></p>
+
+  <p><label for="status">Статус</label><br/>
+  <%= f.text_field :status %></p>
+
+  <p><label for="birthday">Дата рождения</label><br/>
+    <% @user.birthday = '1901-12-31' if @user.birthday.nil? or @user.birthday.to_s.size < 1
+    @user.birthday = @user.birthday.to_s(:rusdate)%>
+    <%= f.text_field :birthday %></p>
+
+  <p><label for="phone">Телефон</label><br/>
+  <%= f.text_field :phone %></p>
+
+  <p><label for="email">e-mail</label><br/>
+  <%= f.text_field :email %></p>
+
+  <p><label for="icq">ICQ</label><br/>
+  <%= f.text_field :icq %></p>
+
+  <p><label for="login">Имя для входа(eng)</label><br/>
+  <%= f.text_field :login %></p>
+
+  <p><label for="password">Пароль</label><br/>
+  <%= f.password_field :password %></p>
+
+  <p><label for="password_confirmation">Повторите пароль</label><br/>
+  <%= f.password_field :password_confirmation %></p>
+
+  <p><%= submit_tag 'Готово!' %></p>
+<% end -%>

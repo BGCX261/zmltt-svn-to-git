@@ -1,0 +1,103 @@
+/*
+ * Глобальные стили
+*/
+BODY{margin:25px; padding:0; background-color:#fff;}
+*{font:11px/13px Tahoma;}
+TD A{font:11px/13px Tahoma; color:#0ca6f2;}
+A:link, A:visited{text-decoration:none;}
+A:hover{text-decoration:underline; color:#ee2d00;}
+IMG{border:none;}
+
+FORM{margin:0; padding:0}
+LABEL{display:block; margin-bottom:4px; font:11px/11px Tahoma; color:#525f66}
+INPUT, TEXTAREA{display:block; font:11px/11px Tahoma; color:#525f66}
+
+.loader {height:16px; width:16px; margin:2px -2px 0 0; #margin:0 -5px 0 0; float:right}    
+
+/*
+ * Скелет
+*/
+.main{width:100%; height:100%;}
+.header TD{height:100px; vertical-align:top; white-space:nowrap;}
+.body{text-align:center;}  
+  .body .center{width:50%; height:280px; min-width:600px; margin:auto;}
+  * html .body .center{border-right:solid #fff 600px;}
+  * html .body .minwidth{display:inline-block; position:relative; margin-right:-600px;}
+  .body .logo{margin-bottom:40px;}
+  .body .topLinks{height:25px;}
+    .body .topLinks .green{float:left; margin-left:10px;}
+    .body .topLinks .right{float:right; margin-right:10px}
+      .body .topLinks .right #selectPlaceLink{padding-right:12px; position:relative; z-index:2; background:url('../images/arrow_down_blue.png') no-repeat 100% 2px}      
+    .body .roundTextfield{margin-bottom:22px;}
+    .body .middleLinks{height:25px; border-bottom:solid #dae1e6 1px; margin-bottom:13px;padding-left:4px;}
+      .body .middleLinks TABLE{width:100%;}
+      .body .middleLinks TD.margin{width:2.03%;}
+      .body .middleLinks TD.first{padding-left:10px;}
+      .body .middleLinks TD.last{padding-right:6px;}
+      .body .middleLinks TD{white-space:nowrap;} 
+    .body .bottomLinks{margin-top:-13px;}
+      .body .bottomLinks TABLE{width:100%;}
+      .body .bottomLinks TD.margin{width:8.33%;}
+      .body .bottomLinks TD.first{padding-left:10px;}
+      .body .bottomLinks TD.last{padding-right:5px;}
+      .body .bottomLinks TD{white-space:nowrap;} 
+.footer TD{height:100px; vertical-align:bottom;}
+.footer TD{white-space:nowrap;}
+.footer TD.left{width:33%; min-width:300px;}
+.footer TD.center{width:34%;}
+  .footer TD.center A:link, .footer TD.center A:visited{width:75px; height:20px; background:url('../images/forluck.png') no-repeat top left; display:inline-block}
+  .footer TD.center A:hover{width:75px; height:20px; background:url('../images/forluck_a.png') no-repeat top left; display:inline-block}
+.footer TD.right{width:33%; min-width:300px;}
+
+  
+/*
+ * Вспомогательные стили
+*/  
+  
+UL.links{list-style:none; margin:0; padding:0}
+  UL.links LI{display:inline; margin-right:13px}  
+  
+TD.center{text-align:center}
+TD.right{text-align:right}
+
+.grey *{color:#a1acb2}
+.green *{color:#09b217}
+.bold{font-weight:bold}
+
+.roundered{background:#fff url('../images/border.png') repeat-y top left}
+  .roundered .middle{padding:12px 18px 12px 18px; text-align:left; background:url('../images/border.png') repeat-y top right}
+  .roundered .top{height:6px; overflow:hidden; background:url('../images/border.png') repeat-x top left}
+  .roundered .bottom{height:6px; overflow:hidden; background:url('../images/border.png') repeat-x bottom left}
+  * html .roundered .bottom{overflow:visible}
+    .roundered .top .left{float:left; margin:-6px 0 0 -6px}
+    .roundered .top .right{float:right; margin:-6px -6px 0 0}
+    .roundered .bottom .left{float:left; margin:0 0 -6px -6px}
+    .roundered .bottom .right{float:right; margin:0 -6px -6px 0}
+
+/*
+ * Формы
+*/
+INPUT.textfield{margin-bottom:15px; padding:5px; display:block; border:solid #ced4d9 1px}
+TEXTAREA.textarea{margin-bottom:15px; padding:5px; display:block; border:solid #ced4d9 1px}
+
+.button{background:url('../images/button_bg.png') no-repeat top left;}
+  .button DIV{padding:5px 10px 4px 10px; background:url('../images/button_bg2.png') no-repeat top right; font:11px/11px Tahoma; color:#525f66; text-align:center; cursor:pointer}
+
+.roundTextfield{height:32px; overflow:hidden; background:url('../images/textfield_bg.png') repeat-x; text-align:right}
+  .roundTextfield .left{height:32px; overflow:hidden; background:url('../images/textfield_left.png') no-repeat top left}
+  .roundTextfield .right{height:32px; padding-top:6px; padding-right:10px; overflow:hidden; background:url('../images/textfield_right.png') no-repeat top right}
+  * html .roundTextfield .right{padding-top:8px;}  
+  .roundTextfield INPUT{width:100%; padding:0 10px 0 30px; margin:0 0 0 -20px; float:left; font:16px/16px Arial; font-weight:bold; color:#667780; border:none; background-color:transparent;}
+  
+.popupForm{width:275px}
+  .popupForm .close{float:right; margin:-8px -8px 0 0; cursor:pointer}
+  .popupForm .textfield{width:239px; height:24px}
+  .popupForm .textarea{width:239px; height:110px; border:solid #ced4d9 1px; overflow:auto}
+  .popupForm .button{width:75px}
+
+#contactForm{position:absolute; bottom:25px; right:25px; display:none}
+#loginForm{position:absolute; top:25px; right:25px; display:none}
+#selectPlace{width:200px; position:absolute; margin:-10px 0  0 -17px; display:none}
+  #selectPlace .middle{padding:30px 18px 5px 18px}
+  #selectPlace UL{list-style:none; margin:0; padding:0}
+  #selectPlace LI {height:20px; padding:0; margin:0}

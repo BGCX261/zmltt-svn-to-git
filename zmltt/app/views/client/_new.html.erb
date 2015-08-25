@@ -1,0 +1,131 @@
+<div>
+  <% form_for :rekvizit, :html => {:method => "post", :id=>"rekvizit#{@rekvizit.id.to_s}-form"} do |p| %>
+    <table>
+      <tr>
+        <td><%= hidden_field 'rekvizit_id', 'id', :value=>@rekvizit.id %>
+          Юридическое название:
+        </td>
+        <td>
+          <%= p.text_field :name %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Юридический адресс:
+        </td>
+        <td>
+          <%= p.text_field :adressur %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          ИНН:
+        </td>
+        <td>
+          <%= p.text_field :inn %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          КПП:
+        </td>
+        <td>
+          <%= p.text_field :kpp %>
+        </td>
+      </tr>
+      <tr>
+
+        <td>
+          Расчетный счет:
+        </td>
+        <td>
+          <%= p.text_field :rschet%><br>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Банк:
+        </td>
+        <td>
+          <%= p.text_field :bank %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Кор.счет:
+        </td>
+        <td>
+          <%= p.text_field :kschet %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          БИК:
+        </td>
+        <td>
+
+          <%= p.text_field :bik %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <b><%= in_place_editor_field :rekvizit, 'gendir' %>:</b>
+        </td>
+        <td>на основании <%= in_place_editor_field :rekvizit, 'gendirosn' %></td>
+
+      </tr>
+      <tr>
+        <td>
+          Фамилия:
+        </td>
+        <td>
+          <%= p.text_field :gendirfam %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        Имя:    </td>
+        <td>
+          <%= p.text_field :gendirname %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        Отчество:    </td>
+        <td>
+          <%= p.text_field :gendirotch %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <b><%= in_place_editor_field :rekvizit, 'bux' %>:</b>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          Фамилия:
+        </td>
+        <td>
+          <%= p.text_field :buxfam %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        Имя:    </td>
+        <td>
+          <%= p.text_field :buxname %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+        Отчество:    </td>
+        <td>
+          <%= p.text_field :buxotch %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<%= easysave("rekvizit#{@rekvizit.id.to_s}-form",{:action => :edit}) %>

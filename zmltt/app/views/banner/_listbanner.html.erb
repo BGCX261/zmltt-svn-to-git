@@ -1,0 +1,87 @@
+<% if not @banner.nil? and @banner.size > 0 %>
+  <%= update_page_tag do |page|
+    page.replace_html("laters", render(:partial=>'laters'));
+    page.replace_html("tipsctrl", render(:partial=>'tiplist'));
+    page.replace_html("selectPlaceLink", session[:city]);
+  end%>
+  <table border="0" id='main'>
+    <tr>
+      <td>-\+</td>
+      <%if logged_in? %>
+        <td>Номер п\б</td>
+      <%end%>
+      <td>Адресс</td>
+      <td>Тип</td>
+      <td>Сторона</td>
+      <%if not logged_in? %>
+        <td>Освещение</td>
+      <% else %>
+        <td>Подрядчик</td>
+        <%if params[:action]=='recycler'%>
+          <td>Доп.услуги</td>
+        <%end%>
+      <%end%>
+      <% if params[:action] == 'recycler'%>
+        <td>Начальная дата</td>
+        <td>Конечная дата</td>
+        <td>Цена</td>
+      <%end%>
+    </tr>
+    <% @banner.each do |p| %><% if (not p.nil?) and (not p.id.nil?) %>
+        <tr id="delban_div_<%= p.id.to_s%>" <%= "class='online'" if p.online == "есть" %>>
+
+          <td><div id="add_div_<%=p.id.to_s%>">
+              <%if session[:order] and Price.exists?({:banner_id =>p.id, :order_id => session[:order]})%>
+                <%= addel(p.id,"del") %>
+              <%else%>
+                <%= addel(p.id,"add") %>
+              <%end%>
+          </div></td>
+
+          <%if logged_in?%>
+            <%= p.xnomer = 'x' if p.xnomer.nil?%>
+            <td><%= lnk(p.contractor.nid+'.'+p.xnomer, p.id) if not p.contractor.nil? %></td>
+          <%end%>
+          <td><span id="delbanpre_div_<%= p.id.to_s %>"><%= lnk(adress(p),p.id) %></span></td>
+          <td><%= p.tp %></td>
+          <td><%= p.storona %></td>
+          <%if not logged_in? %>
+            <td><%= p.light %></td>
+          <% else %>
+            <td><%= lnkc(p.contractor.name,p.contractor.id) if not p.contractor.nil?%></td>
+            <% if params[:action] == 'recycler' %>
+              <td><%= link_to_remote "+доп.усл.", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller=> 'order', :action => "setextra", :bannerid => p.id}%></td>
+            <%end%>
+          <%end%>
+          <% if params[:action] == 'recycler' %>
+
+            <% @price = Price.find(:first, :conditions => {:banner_id => p.id, :order_id => session[:order]})
+            @price.databegin = Time.now.to_date if @price.databegin.nil?
+            @price.dataend = Time.now.to_date + 1.month if @price.dataend.nil?
+          %>
+            <td><span id="databeg_<%= @price.id.to_s %>"><%= calendarh(@price.databegin, 'office', 'setrecycler', @price.databegin, 's', @price.id, 'databeg_'+@price.id.to_s) %></span>
+            <%#= in_place_editor_field :price, :databegin%></td>
+            <td><span id="dataend_<%= @price.id.to_s %>"><%= calendarh(@price.dataend, 'office', 'setrecyclerend', @price.dataend, 's', @price.id, 'dataend_'+@price.id.to_s) %></span>
+            <td><%= @price.coast %>р.</td>
+          <%end%>
+
+          <%if logged_in? %>
+            <td><%= editdiv('[e]',{:action => "edit", :id => p.id})%></td>
+            <td><%= deldivc('banner', "del", p.id,"delbanpre_div_#{p.id.to_s}", '[x]','') %></td>
+          <%end%>
+          <% if p.online == "есть" and params[:action] != 'recycler'%>
+            <td>
+              <%p.onlines.each do |on|%>
+                <%if p.tp != 'Перетяжки'%>
+                  <%= rumonthes[on.databegin.month - 1] %>
+                <%else%>
+                  <%= daymonth(on.databegin)%> - <%= daymonth(on.dataend) %>
+                <%end%> за <%=on.coast%>р.;
+              <%end%>
+            </td>
+          <%end%>
+        </tr>
+      <%end%>
+    <%end%>
+  </table>
+<%end%>

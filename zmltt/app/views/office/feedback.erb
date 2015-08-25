@@ -1,0 +1,6 @@
+  <% form_for :order, :url => { :controller =>"office", :action => "feedback", :id => 'order' }, :html => {:method => "post", :id=>"order-form"} do |f| -%>
+    E-mail:<%= f.text_field(:wtf) %><br/>
+    Сообщение:<%= f.text_area(:order, :cols => 50, :rows => 10) %>
+    <%= submit_tag 'Отправить' %>
+  <%end%>
+  

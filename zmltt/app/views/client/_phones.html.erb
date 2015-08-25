@@ -1,0 +1,77 @@
+<% global_i=0 %>
+<% client.contacts.sort_by{|c|c.id}.each do |p| %>
+  <% global_i += 1%>
+  <div id="contact_div_<%=p.id.to_s%>">
+    <br/>
+    <% @contact = p%>
+    <% if not p.name.nil? %>
+      <% global_i += 1%>
+      <table>
+        <tr>
+          <td><div id="maincont_div_<%=p.id.to_s%>"><%= maincont(p.id.to_s) %></div></td>
+          <td><b>Контактное лицо:</b></td>
+          <td><b><%= in_place_editor_field :contact, 'name' %></b></td>
+          <td><div id="contactsmall_div_<%=p.id.to_s%>"><%= delcontact(p.id)%></div></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Должность:</td><td><%= in_place_editor_field :contact, 'post' %></td>
+        </tr>
+      </table>
+    <%else%>
+      <% form_for :contact, :html => {:method => "post", :id=>"formcontactsmall_#{p.id.to_s}"}, :url => { :controller =>'client', :action => 'editcontact', :id => @contact.id} do |f| -%>
+        <% global_i += 1%>
+        <table>
+          <%= hidden_field 'cntrl', 'name', :value=>cntrl %>
+          <%= hidden_field 'client_id', 'id', :value=>client.id %>
+          <tr>
+            <td>Контактное лицо:</td><td><%= f.text_field :name %></td>
+            <td><div id="contactsmall_div_<%=p.id.to_s%>"><%= delcontact(p.id)%></div></td>
+          </tr>
+          <tr>
+            <td>Должность:</td><td><%= f.text_field :post %></td>
+          </tr>
+        </table>
+      <% end -%>
+      <%= easysave("formcontactsmall_#{p.id.to_s}",{ :controller =>'client', :action => 'editcontact', :id => @contact.id}) %>
+    <%end%>
+    <table>
+      <% i=0 %>
+      <% p.phones.each do |t| %>
+        <% global_i += 1%>
+        <% i=i+1 %>
+        <% @phone=t %>
+
+        <tr id="tel_alldiv_<%=t.id.to_s%>">
+          <td><div id="maintel_div_<%=t.id.to_s%>"><%= maintel(t.id.to_s) %></div></td>
+          <td>Телефон <%=i.to_s %>(<%= t.tip %>): </td>
+          <td><%= in_place_editor_field :phone, 'number' %></td>
+          <td><div id="tel_div_<%=t.id.to_s%>"><%= deltel(t.id) %></div></td>
+        </tr>
+      <%end%>
+    </table>
+    <% global_i += 1%>
+    <table>
+      <tr>
+        <td>Еще телефон:</td><td>
+          <% @phone=nil %>
+          <% form_for :phone, :url => { :controller =>'client', :action => 'addphone' }, :html => {:method => "post", :id=>"newphonenumb#{global_i.id.to_s}-form"} do |f| -%>
+            <%= hidden_field 'contact_id', 'id', :value=>p.id %>
+            <%= hidden_field 'client_id', 'id', :value=>client.id %>
+            <%= hidden_field 'cntrl', 'name', :value=>cntrl %>
+            <%= f.text_field :number %><%= f.select :tip, ['моб','гор','icq','e-mail','www','адресс'] %>
+            <%= easybutton('[+]',"newphonenumb#{global_i.id.to_s}-form",{ :controller =>'client', :action => 'addphone' }) %>
+            <%#= submit_tag "Добавить" %>
+          <%end%>
+        </td>
+      </tr>
+    </table>
+  </div>
+<%end%>
+<hr>    
+<% @contact=nil %>
+<% form_for :contact, :url => { :controller =>'client', :action => 'addcontact' }, :html => {:method => "post", :id=>"newcont-form"} do |f| -%>
+  <%= hidden_field 'client_id', 'id', :value=>client.id %>
+  <%= hidden_field 'cntrl', 'name', :value=>cntrl %>
+  <%= easybutton("Добавить еще контактное лицо",'newcont-form',{ :controller =>'client', :action => 'addcontact' }) %>
+<% end -%>

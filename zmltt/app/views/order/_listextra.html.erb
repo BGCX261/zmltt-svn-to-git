@@ -1,0 +1,14 @@
+<table border="1">
+  <tr>
+    <td>Дополнительная услуга</td>
+    <td>Цена</td>
+  </tr>
+  <% @extra.each do |p| %>
+    <tr id="delex_div_<%= p.id.to_s%>">
+      <td><%= p.name %></td>
+      <td><%= p.coast %></td>
+      <td><%=  editdiv('[e]',{:action => "editextra", :id => p.id})%></td>
+      <td><%= deldivc('order', "delextra", p.id, "delex_div_#{p.id.to_s}>", imgremove, p.name) %></td>
+    </tr>
+  <%end%>
+</table>

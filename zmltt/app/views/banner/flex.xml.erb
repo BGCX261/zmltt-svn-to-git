@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<banners>
+  <%-@banner.each do |b|-%>
+    <banner>
+      <adress><%=b.city%></adress>
+      <id type="integer"><%=b.id%></id>
+      <light><%=b.light%></light>
+      <online><%=b.online%></online>
+      <primech><%=b.primech%></primech>
+      <storona><%=b.storona%></storona>
+      <tp><%=b.tp%></tp>
+      <xnomer><%=b.contractor.nid+"."+b.xnomer%></xnomer>
+      <zametka><%=b.zametka%></zametka>
+	  <suplaer><%= b.contractor.name %></suplaer>
+      <onlines>
+        <%- find_online(b.id).each do |on| -%>
+          <item>
+            <date><%= showdata(b.tp,on) %></date>
+            <price><%= on.coast %></price>
+          </item>
+        <%-end-%>
+      </onlines>
+      <price><%= first_online(b.id).coast %></price>
+      <interval><%= online_size(b) %></interval>
+    </banner>
+  <%-end-%>
+</banners>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-type"
+          content="text/html; charset=utf-8" />
+    <%= stylesheet_link_tag 'style' %>
+    <%= javascript_include_tag :all  %>
+  </head>
+  <body>
+
+    <%= update_page_tag do |page|
+      page.call 'centerize','main_div';
+      page.visual_effect :appear, 'main_div', :duration => 0.2, :to => 0.99;
+    end%>
+
+    <div id="content">
+      <div style="float:right;">
+        <%= link_to '<img src="/images/link.gif" width="36" height="14" />', {:controller => params[:controller], :action => params[:action], :id => params[:id]} %>
+      <a href="#" onclick="$('main_div').fade({ duration: 0.3 });setTimeout($('main_div').innerHTML='',500);"><img src="/images/close.gif" alt="" width="14" height="14" /></a></div>
+      <% unless flash[:notice].blank? %>
+        <div id="notification"><%= flash[:notice] %></div>
+        <%= update_page_tag do |page|
+          page.visual_effect :fade, 'notification', :duration => 10;
+        end%>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

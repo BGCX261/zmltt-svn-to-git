@@ -1,0 +1,5 @@
+<!-- <div id="results"><%#= render :partial => "list"  %></div> -->
+<div id="results"><%= render :partial => "client/list", :locals => { :clients => @contractors, :cntrl => 'contractor' }  %></div>
+<% if current_user.login == 'zm-admin'%>
+  <%= link_to_remote "+add", :update => 'main_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:action => "add"}%>
+<%end%>

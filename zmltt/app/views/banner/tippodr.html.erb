@@ -1,0 +1,6 @@
+<%= update_page_tag do |page|
+  page.replace_html("results", render(:partial=>'listbanner'));
+  page.visual_effect :highlight, 'results';
+end%>
+
+<%= showpodr(params[:spodr]) %>

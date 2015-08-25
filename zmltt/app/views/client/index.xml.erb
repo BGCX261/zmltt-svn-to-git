@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<clients>
+  <%-@clients.each do |c|-%>
+    <client>
+      <%-loadinfo(c)-%>
+      <id><%= c.id %></id>
+      <name><%= h c.name %></name>
+      <human><%= @human.name %></human>
+      <mob><%= @mob.number %></mob>
+      <stac><%= @stac.number %></stac>
+      <icq><%= @icq.number %></icq>
+      <email><%= @email.number %></email>
+      <www><%= @www.number %></www>
+      <zametka><%= h c.zametka %></zametka>
+    </client>
+  <%-end-%>
+</clients>

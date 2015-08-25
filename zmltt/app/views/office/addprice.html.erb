@@ -1,0 +1,6 @@
+<%= update_page_tag do |page|
+  page.replace_html("add_div_"+params[:id], addel(params[:id],'del'));
+end%>
+
+<%= render :partial => "editprice"  %>
+

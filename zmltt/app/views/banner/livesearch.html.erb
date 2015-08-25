@@ -1,0 +1,9 @@
+<% if @banner.size == 0%>
+  <center>По введенному запросу ничего не найдено.</center>
+  <%= session[:city]+session[:search]+session[:later] %>
+<%else%>
+  <%= render :partial => "listbanner"  %>
+<%end%>
+
+
+

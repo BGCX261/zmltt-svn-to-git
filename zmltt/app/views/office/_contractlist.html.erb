@@ -1,0 +1,20 @@
+<table border="1">
+  <tr>
+    <td>Тип договора</td>
+    <td>Организация</td>
+    <td>Партнер</td>
+    <td>№ договора</td>
+    <td>Дата заключения</td>
+    <td>Статус</td>
+  </tr>
+  <% @dogovors.each do |p|%>
+    <tr>
+      <td><%= p.tip %></td>
+      <td><%= p.ourfirm_id.to_s %></td>
+      <td><%= p.client_id.to_s %></td>
+      <td><%= p.id.to_s %></td>
+      <td><%= p.data %></td>
+      <td><%= p.status %></td>
+    </tr>
+  <%end%>
+</table>

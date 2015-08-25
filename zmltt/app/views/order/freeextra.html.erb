@@ -1,0 +1,32 @@
+<% form_for :price do |p| %>
+  <table>
+    <tr>
+      <td>
+        Дополнительная услуга:
+      </td>
+      <td>
+        <%= p.text_area :wtf, :rows => '3' %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Цена:
+      </td>
+      <td>
+        <%= p.text_field :coast %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Себестоимость:
+      </td>
+      <td>
+        <%= p.text_field :realcoast %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= submit_tag "Сохранить" %></td>
+    </tr>
+  </table>
+<% end %>

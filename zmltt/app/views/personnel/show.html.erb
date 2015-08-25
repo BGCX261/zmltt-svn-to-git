@@ -1,0 +1,18 @@
+<div>
+  <div style="float:left;">
+
+    <table>
+      <tr><td>Ф.И.О.</td><td><%= @user.fio %></td></tr>
+      <tr><td>Телефон</td><td><%= @user.phone %></td></tr>
+      <tr><td>Отдел</td><td><%= @user.otdel %></td></tr>
+      <tr><td>e-mail</td><td><%= @user.email %></td></tr>
+      <tr><td>ICQ</td><td><%= @user.icq %></td></tr>
+      <tr><td>Login</td><td><%= @user.login %></td></tr>
+    </table>
+  </div>
+  <div style="float:right;">
+    <% @user.photos.each do |p| %>
+      <%= link_to_remote image_tag(url_for(:controller =>'banner', :action => 'file_id', :id => p.id), :size => "325x217"), :update => 'photo_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'office', :action => "showphoto", :id => p.id} %>
+    <%end%>
+  </div>
+</div>

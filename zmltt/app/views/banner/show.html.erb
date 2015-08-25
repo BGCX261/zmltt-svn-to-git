@@ -1,0 +1,64 @@
+<div style="float:left;text-align:left;">
+  <table width=530 id=banner cellspacing="5" border=0>
+    <tr>
+      <td nowrap align="right" valign="right"><b>Номер по базе:</b></td>
+      <td>
+        <%= @banner.contractor.nid if not @banner.contractor.nil? %>.<%= @banner.xnomer %>
+      </td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Адрес:</td>
+      <td><b><font color=red><%= adress(@banner,1) %></font></b></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Тип:</td>
+      <td><b><font color=red><%= @banner.tp %></font></b></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Свет:</td>
+      <td><b><font color=red><%= @banner.light %></font></b></td>
+    </tr>
+    <tr>
+      <td align="right" valign="top">Сторона:</td>
+      <td><b><font color=red><%= @banner.storona %></font></b></td>
+    </tr>
+    <% if @banner.zametka.size > 1%>
+      <tr>
+        <td align="right" valign="top">Заметка:</td>
+        <td><b><font color=red><%= @banner.zametka%></font></b></td>
+      </tr>
+    <%end%>
+    <%if logged_in? %>
+      <tr>
+        <td align="right" valign="top">Подрядчик:</td>
+        <td><b><font color=red><%= @banner.contractor.name if not @banner.contractor.nil?%></font></b></td>
+      </tr>
+    <%end%>
+    <tr>
+    <td align="center">
+	<div style="width: 300px;">
+<img src="/new/images/logo.png" alt="" />
+        <br />
+        <br />
+        <br />
+        <img src="/new/images/manager.jpg" alt=""/>
+        <br />
+        <div align="center">
+          <b>Ваш менеджер</b>
+          <p style="font-size: 110%;">
+            Иванова Ирина <br />
+            <b>668.04.20</b>
+          </p>
+          <img src="/images/000.gif" alt="" width="1" height="50"
+             </div>
+</div></td>
+      <td valign="top" rowspan="2">
+        <div>
+          <% @photo.each do |p| %>
+            <%= link_to_remote image_tag(url_for(:action => 'file_id', :id => p.id), :size => "325x217"), :update => 'photo_div', :before => "Element.show('spinner')", :success => "Element.hide('spinner')", :method => 'get', :url => {:controller => 'office', :action => "showphoto", :id => p.id} %>
+          <%end%>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>

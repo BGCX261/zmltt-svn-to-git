@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sups>
+  <%@contractors.each do |c|%>
+    <sup>
+      <%-loadinfo(c)-%>
+      <id><%= c.id %></id>
+      <name><%= c.name %></name>
+      <human><%= @human.name %></human>
+      <mob><%= @mob.number %></mob>
+      <stac><%= @stac.number %></stac>
+      <icq><%= @icq.number %></icq>
+      <email><%= @email.number %></email>
+      <www><%= @www.number %></www>
+      <otrasl><%= c.otrasl %></otrasl>
+      <zametka><%= c.zametka %></zametka>
+    </sup>
+  <%end%>
+</sups>
